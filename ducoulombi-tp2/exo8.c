@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-10-28
  * 
- * @brief 
+ * @brief fichier pour faire un compte a rebours
  * 
  */
 #include <stdio.h>
@@ -15,7 +15,7 @@
  * @version 0.1
  * @date 2022-10-28
  * 
- * @brief fonction Main, qui fait un compte a rebours
+ * @brief fonction Main, qui fait un compte a rebours (avec un for)
  * 
  * @param argc 
  * @param argv 

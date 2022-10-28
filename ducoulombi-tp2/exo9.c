@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-10-28
  * 
- * @brief 
+ * @brief fichier pour afficher un compte a rebours
  * 
  */
 #include <stdio.h>
@@ -14,12 +14,12 @@
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-10-28
- * 
- * @brief 
+ *
+ * @brief fonction qui affiche un compte a rebours de maniere alternative (avec une boucle while)
  * 
  * @param argc 
  * @param argv 
- * @return int 
+ * @return 0 si pas d'erreur, 1 sinon
  */
 int main(int argc, char *argv[])
 {

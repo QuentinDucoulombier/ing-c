@@ -1,0 +1,61 @@
+\hypertarget{helloWorld_8c}{}\doxysection{Référence du fichier hello\+World.\+c}
+\label{helloWorld_8c}\index{helloWorld.c@{helloWorld.c}}
+
+
+T\+D1 de programation en C.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Graphe des dépendances par inclusion de hello\+World.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{helloWorld_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em fonction main, qui retourne Bonjour tout le monde \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+T\+D1 de programation en C. 
+
+\begin{DoxyAuthor}{Auteur}
+Quentin Ducoulombier (\href{mailto:ducoulombi@cy-tech.fr}{\texttt{ ducoulombi@cy-\/tech.\+fr}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/10-\/19 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{helloWorld_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{helloWorld_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{helloWorld.c@{helloWorld.c}!main@{main}}
+\index{main@{main}!helloWorld.c@{helloWorld.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+fonction main, qui retourne Bonjour tout le monde 
+
+\begin{DoxyAuthor}{Auteur}
+Quentin Ducoulombier (\href{mailto:ducoulombi@cy-tech.fr}{\texttt{ ducoulombi@cy-\/tech.\+fr}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/10-\/19
+\end{DoxyDate}
+
+\begin{DoxyParams}{Paramètres}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+0 si pas de bug 
+\end{DoxyReturn}

@@ -1,0 +1,43 @@
+\DoxyHorRuler{0}
+
+
+Auteur\+: Quentin Ducoulombier ~\newline
+ date\+: 19/10/2022 ~\newline
+ email\+: \href{mailto:ducoulombi@cy-tech.fr}{\texttt{ ducoulombi@cy-\/tech.\+fr}}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md3}{}\doxysection{Comment compiler ?}\label{md_README_autotoc_md3}
+Pour compiler il suffit de se mettre dans le repertoire courant du fichier \mbox{\hyperlink{helloWorld_8c}{hello\+World.\+c}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>gcc -\/Wall helloWorld.c -\/o exe}
+\DoxyCodeLine{>>./exe}
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md4}{}\doxysection{Comment generer Doxygen ?}\label{md_README_autotoc_md4}
+Pour generer doxygen il existe deux solutions \+: La premiere manière 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>>doxygen -\/g}
+\DoxyCodeLine{>>doxygen Doxyfile}
+\end{DoxyCode}
+
+
+ou sinon 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{>> doxywizard}
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md5}{}\doxysection{A quoi servent les séquences d’échappement ?}\label{md_README_autotoc_md5}
+Une séquence d\textquotesingle{}échappement est une combinaison de caractères qui a une signification autre que les caractères littéraux qu\textquotesingle{}elle contient Elle est marquée par un ou plusieurs caractères précédents ~\newline
+ (source \+: \href{https://en.wikipedia.org/wiki/Escape_sequence}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Escape\+\_\+sequence}})
+
+Exemple \+:
+\begin{DoxyItemize}
+\item \textbackslash{}\textquotesingle{} apostrophe
+\item \textbackslash{}" guillemet. Valeur hexadécimale \+: 0x22 ;
+\item \textbackslash{}? point d\textquotesingle{}interrogation. Valeur hexadécimale \+: 0x3f ;
+\item \textbackslash{} Barre oblique inversée. Valeur hexadécimale \+: 0x5c ;
+\item \textbackslash{}0 caractère nul. Valeur hexadécimale \+: 0x00 ;
+\item \textbackslash{}a Caractère d\textquotesingle{}appel audible. Valeur hexadécimale \+: 0x07 ;
+\item \textbackslash{}b retour arrière (backspace). Valeur hexadécimale \+: 0x08 ;
+\item \textbackslash{}f nouvelle page. Valeur hexadécimale \+: 0x0c ;
+\item \textbackslash{}n nouvelle ligne. Valeur hexadécimale \+: 0x0a ;
+\item \textbackslash{}r retour chariot. Valeur hexadécimale \+: 0x0d ; 
+\end{DoxyItemize}

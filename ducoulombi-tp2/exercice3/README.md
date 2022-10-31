@@ -30,5 +30,5 @@ ou sinon
 
 ## Question 3
 
-Lorsque le rentre un réel en premier le programme retourne une erreur a cause de la virgule (ou le point)
+Lorsque l'on rentre un réel en premier le programme retourne une erreur a cause de la virgule (ou le point)
 

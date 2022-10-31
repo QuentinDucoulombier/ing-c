@@ -43,12 +43,12 @@ int verifIntOuFloat(char nombre[50])
 
 
 /**
- * @fn int main(int argc, char *argv)
+ * @fn int main(int argc, char *argv[])
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-10-28
  * 
- * @brief 
+ * @brief fonction MAIN qui affiche et verifie la compatibilté de la division euclidienne
  * 
  * @param argc 
  * @param argv 

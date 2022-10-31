@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-10-26
  * 
- * @brief 
+ * @brief fichier qui contient l'ensemble des fonctions pour la saisie d'une personne
  * 
  */
 #include <stdio.h>
@@ -21,10 +21,10 @@
  * @version 0.1
  * @date 2022-10-26
  * 
- * @brief fonction qui permet a l'utilisateur de saisir son nom
+ * @brief fonction qui permet a l'utilisateur de saisir son prénom
  * 
  * @param prenom 
- * @return int 
+ * @return la sortie en booléen du scanf (s'il y a une erreur ou non)
  */
 int saisiePrenom(char prenom[30])
 {
@@ -48,7 +48,7 @@ int saisiePrenom(char prenom[30])
  * @brief fonction qui permet a l'utilisateur de saisir son nom
  * 
  * @param nom 
- * @return int 
+ * @return la sortie en booléen du scanf (s'il y a une erreur ou non) 
  */
 int saisieNom(char nom[30])
 {

@@ -19,7 +19,7 @@
  * 
  * @param argc 
  * @param argv 
- * @return afficher l'entier saisis par l'utilisateur
+ * @return affiche l'entier saisie par l'utilisateur
  */
 int main(int argc, char *argv[])
 {

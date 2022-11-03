@@ -41,4 +41,6 @@ ou sinon
 
 > doxywizard
 " > ducoulombi-tp$y/exercice$i/README.md
+cp Doxyfile ducoulombi-tp$y/exercice$i 
+cp -R dataForDoxyfile ducoulombi-tp$y
 done

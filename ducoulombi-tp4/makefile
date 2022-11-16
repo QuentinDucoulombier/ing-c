@@ -16,3 +16,5 @@ clean:
 	rm -f *.o
 	rm -f exe
 	@echo "tout a été éffacé"
+	rm -rf html
+	rm -rf latex

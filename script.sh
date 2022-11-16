@@ -20,11 +20,14 @@ Email: ducoulombi@cy-tech.fr
 
 ## Comment compiler ?
 
-Pour compiler il suffit de se mettre dans le repertoire courant du fichier helloWorld.c
+Pour compiler il suffit de se mettre dans le repertoire courant du dossier ducoulombi-tp$y
 
-> gcc -Wall exo$i.c -o exe  
+> make    
 > ./exe
 
+Pour effacer tous les fichier de compilation et de doxygen effectuer la commande
+
+> make clean  
 
 ## Comment generer Doxygen ?
 

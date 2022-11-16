@@ -1,4 +1,4 @@
-# 
+# TD4: Compilation séparée
  
 ---
 
@@ -10,11 +10,14 @@ Email: ducoulombi@cy-tech.fr
 
 ## Comment compiler ?
 
-Pour compiler il suffit de se mettre dans le repertoire courant du fichier helloWorld.c
+Pour compiler il suffit de se mettre dans le repertoire courant du dossier ducoulombi-TP4
 
-> gcc -Wall exo.c -o exe  
+> make  
 > ./exe
 
+Pour effacer tous les fichier de compilation et de doxygen effectuer la commande
+
+> make clean
 
 ## Comment generer Doxygen ?
 
@@ -29,4 +32,3 @@ Si le fichier Doxyfile n'existe pas
 
 **Attention**: Le fichier Doxyfile de base est different du fichier générer avec doxygen -g. Il faut utilisé cette commande que si le fichier Doxyfile **n'existe pas**.  
 En effet le fichier Doxyfile depend du dossier [dataForDoxyfile](../dataForDoxyfile/) a ne **PAS** suprrimer. (voir [ici](https://jothepro.github.io/doxygen-awesome-css/md_docs_extensions.html) pour plus d'information sur le css)
-

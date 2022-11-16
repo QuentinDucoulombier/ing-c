@@ -29,10 +29,10 @@ float racineNewton(int nbrIteration);
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief approximation de la racine de 2 par la methode d'Edmund Halley
  * 
  * @param nbrIteration 
- * @return float 
+ * @return racine de 2
  */
 float racineHalley(int nbrIteration);
 
@@ -42,7 +42,7 @@ float racineHalley(int nbrIteration);
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief approximation de la racine de 2 par la methode de Théon de Smyrne
  * 
  * @param nbrIteration 
  * @return float 

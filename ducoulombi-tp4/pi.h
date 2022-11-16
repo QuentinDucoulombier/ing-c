@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief ensemble de fonction pour approximer pi
  * 
  */
 #ifndef __pi_h_
@@ -23,6 +23,7 @@
  */
 float disqueQuadrillage(int nbrPoint);
 
+
 /**
  * @fn int saisieEntier(void)
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
@@ -33,6 +34,7 @@ float disqueQuadrillage(int nbrPoint);
  * 
  */
 int saisieEntier(void);
+
 
 /**
  * @fn float piSangamagrama(int nbrIteration)
@@ -46,6 +48,7 @@ int saisieEntier(void);
  * @return pi
  */
 float piSangamagrama(int nbrIteration);
+
 
 /**
  * @fn float piWallis(int nbrIteration)

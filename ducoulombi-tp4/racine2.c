@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief ensemble de fonctions pour approximer racine de 2
  * 
  */
 #include <stdio.h>
@@ -24,9 +24,9 @@ float racineNewton(int nbrIteration)
     return (float_racine);
 }
 
-/// @brief 
+/// @brief approximation de la racine de 2 par la methode d'Edmund Halley
 /// @param nbrIteration 
-/// @return 
+/// @return racine de 2
 float racineHalley(int nbrIteration)
 {
     float float_racine = 1;
@@ -37,9 +37,9 @@ float racineHalley(int nbrIteration)
     return (float_racine);
 }
 
-/// @brief 
+/// @brief approximation de la racine de 2 par la methode de Théon de Smyrne
 /// @param nbrIteration 
-/// @return 
+/// @return racine de 2
 float racineSmyrne(int nbrIteration)
 {
     float float_racine = 1;

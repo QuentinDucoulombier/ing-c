@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief fichier main qui contient un menu permettant de selectionner une fonction
  * 
  */
 #include <stdio.h> 
@@ -18,25 +18,26 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief fonction main qui fonction avec un menu
  * 
  * @param argc 
  * @param argv 
- * @return int 
+ * @return 0 si pas d'erreur
  */
 int main(int argc, char *argv[])
 {
 
+    /*------ Affichage du menu -------*/
     int int_retour; /* Valeur de retour */
 	int int_choix;  /* Choix de l'utilisateur */
 	
 	/* Affichage du menu */
-    printf("------Fonction pour approximer pi------\n");
+    printf("------ Fonction pour approximer pi ------\n");
 	printf ("1 - Approximation par aire d'un disque par quadrillage\n");
 	printf ("2 - Approximation de Madhava de Sangamagrama\n");
 	printf ("3 - Approximation de John Wallis\n");
     printf ("\n");
-    printf("------Fonction pour approximer racine de 2------\n");
+    printf("------ Fonction pour approximer racine de 2 ------\n");
     printf ("4 - Approximation de Isaac Newton\n");
 	printf ("5 - Approximation de Edmund Halley\n");
 	printf ("6 - Approximation par la methode de Théon de Smyrne\n");
@@ -50,12 +51,14 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Entree incorrecte\n");
 		exit (EXIT_FAILURE);
 	}
+
+    /*-------- Affectation des variables ---------*/
     int nbrOccurence = 0;
-    //nbrOccurence = saisieEntier();
     float float_racine2 = 0;
     float float_pi = 0;
 
-    	switch (int_choix) 
+    /*-------- Switch pour choisir le programme  --------*/
+    switch (int_choix) 
     {
         case 1 : 
             
@@ -71,7 +74,7 @@ int main(int argc, char *argv[])
             printf("%f\n", float_pi);      
             break;
         case 3 :
-            
+            nbrOccurence = saisieEntier();  
             float_pi = piWallis(nbrOccurence);
             printf("%f\n", float_pi);
             break;
@@ -94,22 +97,10 @@ int main(int argc, char *argv[])
             float_racine2 = racineSmyrne(nbrOccurence);
             printf("%f\n", float_racine2);
             break;
-        
         default :
             break;
 	}
 
-
-    /* exo 1
-    
-    float_pi = piSangamagrama(nbrOccurence);
-    printf("%f\n", float_pi);
-    
-    float_pi = piWallis(nbrOccurence);
-    printf("%f\n", float_pi);
-
-    float_racine2 = racineSmyrne(nbrOccurence);
-    printf("%f\n", float_racine2);*/
     return (0);
 
 }

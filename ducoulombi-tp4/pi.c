@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief ensemble de fonction pour approximer pi
  * 
  */
 #include <stdio.h>
@@ -27,31 +27,31 @@ int saisieEntier(void)
     else
     {
         fprintf(stderr, "Entree incorrecte\n");
-        //On nous a expliqué que l'on pouvait aussi utilisé exit Failure
         exit(EXIT_FAILURE);
     }
 }
 
 
 
-/// @brief fonction disqueQuadrillage qui calcul pi
+/// @brief fonction qui permet d'approximer pi grace a l'aire d'un disque par quadrillage 
 /// @param nbrPoint 
 /// @return pi
 float disqueQuadrillage(int nbrPoint)
 {
     float x = 0;
     float y = 0;
-    float resultat = 0;
+    float float_resultat = 0;
     float cpt = 0;
     float cpt2 = 0;
     srand(time(NULL));
     for (int i = 0; i <= nbrPoint; i++)
     {
+        /*initialise x et y aléatoirement entre 0 et 1 en float*/
         x = (float)rand()/RAND_MAX;
         y = (float)rand()/RAND_MAX;
-        resultat = sqrt(powf(x, 2)+powf(y, 2));
+        float_resultat = sqrt(powf(x, 2)+powf(y, 2));
 
-        if (resultat <= 1)
+        if (float_resultat <= 1)
         {
             cpt++;
         }
@@ -61,9 +61,9 @@ float disqueQuadrillage(int nbrPoint)
         }
     }
     
-    float pi = 0;
-    pi = 4*(cpt/(cpt2+cpt));
-    return(pi);
+    float float_pi = 0;
+    float_pi = 4*(cpt/(cpt2+cpt));
+    return(float_pi);
 }
 
 /// @brief fonction qui fait l'approximation de pi par la technique de Madhava de Sangamagrama

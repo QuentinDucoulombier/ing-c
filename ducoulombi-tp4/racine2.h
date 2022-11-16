@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-16
  * 
- * @brief 
+ * @brief ensemble de fonctions pour approximer racine de 2
  * 
  */
 #ifndef __racine2_h_
@@ -23,26 +23,10 @@
  */
 float racineNewton(int nbrIteration);
 
-/**
- * @fn float racineHalley(int nbrIteration)
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-11-16
- * 
- * @brief 
- * 
- */
+
 float racineHalley(int nbrIteration);
 
-/**
- * @fn float racineSmyrne(int nbrIteration)
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-11-16
- * 
- * @brief 
- * 
- */
+
 float racineSmyrne(int nbrIteration);
 
 #endif

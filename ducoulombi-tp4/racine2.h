@@ -23,10 +23,30 @@
  */
 float racineNewton(int nbrIteration);
 
-
+/**
+ * @fn float racineSmyrne(int nbrIteration);
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-11-16
+ * 
+ * @brief 
+ * 
+ * @param nbrIteration 
+ * @return float 
+ */
 float racineHalley(int nbrIteration);
 
-
+/**
+ * @fn float racineSmyrne(int nbrIteration);
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-11-16
+ * 
+ * @brief 
+ * 
+ * @param nbrIteration 
+ * @return float 
+ */
 float racineSmyrne(int nbrIteration);
 
 #endif

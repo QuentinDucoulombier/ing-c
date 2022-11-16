@@ -1,19 +1,9 @@
-#!/bin/bash
-
-echo "veuillez saisir le numero du td"
-read y;
-
-
-mkdir -p ducoulombi-tp$y
-touch ducoulombi-tp$y/main.c
-touch ducoulombi-tp$y/README.md 
-touch ducoulombi-tp$y/makefile #>>>> si besoin d'un makefile
-echo -e "#include <stdio.h> \n\nint main(int argc, char *argv[])\n{\n\n    return (0);\n}" > ducoulombi-tp$y/main.c
-echo -e "# \n 
+# 
+ 
 ---
 
 Auteur: Quentin Ducoulombier  
-Date: `date +"%d/%m/%y"`  
+Date: 16/11/22  
 Email: ducoulombi@cy-tech.fr
 
 ---
@@ -22,7 +12,7 @@ Email: ducoulombi@cy-tech.fr
 
 Pour compiler il suffit de se mettre dans le repertoire courant du fichier helloWorld.c
 
-> gcc -Wall exo$i.c -o exe  
+> gcc -Wall exo.c -o exe  
 > ./exe
 
 
@@ -39,6 +29,4 @@ Si le fichier Doxyfile n'existe pas
 
 **Attention**: Le fichier Doxyfile de base est different du fichier générer avec doxygen -g. Il faut utilisé cette commande que si le fichier Doxyfile **n'existe pas**.  
 En effet le fichier Doxyfile depend du dossier [dataForDoxyfile](../dataForDoxyfile/) a ne **PAS** suprrimer. (voir [ici](https://jothepro.github.io/doxygen-awesome-css/md_docs_extensions.html) pour plus d'information sur le css)
-" > ducoulombi-tp$y/README.md
-cp Doxyfile ducoulombi-tp$y/
-cp -R dataForDoxyfile ducoulombi-tp$y
+

@@ -1,7 +1,9 @@
 CFLAGS := -Wall
 
+all: exe
+
 exe: pi.o racine2.o main.o
-	gcc -Wall pi.o racine2.o main.o -o exe -lm
+	gcc $(CFLAGS) pi.o racine2.o main.o -o exe -lm
 
 pi.o: pi.c pi.h
 	gcc -c pi.c -o pi.o $(CFLAGS) -lm
@@ -15,6 +17,6 @@ main.o: main.c pi.h racine2.h
 clean:
 	rm -f *.o
 	rm -f exe
-	@echo "tout a été éffacé"
 	rm -rf html
 	rm -rf latex
+	@echo "tout a été éffacé"

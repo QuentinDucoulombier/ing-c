@@ -7,7 +7,7 @@ read y;
 mkdir -p ducoulombi-tp$y
 touch ducoulombi-tp$y/main.c
 touch ducoulombi-tp$y/README.md 
-touch ducoulombi-tp$y/Makefile #>>>> si besoin d'un makefile
+touch ducoulombi-tp$y/Makefile
 echo -e "#include <stdio.h> \n\nint main(int argc, char *argv[])\n{\n\n    return (0);\n}" > ducoulombi-tp$y/main.c
 echo -e "# \n 
 ---
@@ -45,3 +45,9 @@ En effet le fichier Doxyfile depend du dossier [dataForDoxyfile](../dataForDoxyf
 " > ducoulombi-tp$y/README.md
 cp Doxyfile ducoulombi-tp$y/
 cp -R dataForDoxyfile ducoulombi-tp$y
+cp Makefile ducoulombi-tp$y
+
+mkdir ducoulombi-tp$y/src
+mkdir ducoulombi-tp$y/bin
+mkdir ducoulombi-tp$y/doc
+mkdir ducoulombi-tp$y/save

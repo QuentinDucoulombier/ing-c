@@ -49,6 +49,6 @@ doc:
 	@doxygen Doxyfile
 	@echo "la documentation à était crée"
 	
-firefoxDoc: doc
-	@firefox $(DOCDIR)/html/index.html
+operaDoc: doc
+	@opera $(DOCDIR)/html/index.html
 

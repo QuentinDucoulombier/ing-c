@@ -1,0 +1,37 @@
+\DoxyHorRuler{0}
+
+
+Auteur\+: Quentin Ducoulombier ~\newline
+ Date\+: 23/11/22 ~\newline
+ Email\+: \href{mailto:ducoulombi@cy-tech.fr}{\texttt{ ducoulombi@cy-\/tech.\+fr}}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md3}{}\doxysection{Comment compiler ?}\label{md_README_autotoc_md3}
+Pour compiler il suffit de se mettre dans le repertoire courant du dossier ducoulombi-\/tp5
+
+\begin{quote}
+make ~\newline
+ ./exe \end{quote}
+
+
+Pour effacer tous les fichier de compilation et de doxygen effectuer la commande
+
+\begin{quote}
+make clean ~\newline
+ \end{quote}
+\hypertarget{md_README_autotoc_md4}{}\doxysection{Comment generer Doxygen ?}\label{md_README_autotoc_md4}
+Pour generer doxygen si le fichier Doxyfile existe deja (cas normal)\+:
+
+\begin{quote}
+doxygen Doxyfile \end{quote}
+
+
+Si le fichier Doxyfile n\textquotesingle{}existe pas
+
+\begin{quote}
+doxygen -\/g ~\newline
+ doxygen Doxyfile \end{quote}
+
+
+{\bfseries{Attention}}\+: Le fichier Doxyfile de base est different du fichier générer avec doxygen -\/g. Il faut utilisé cette commande que si le fichier Doxyfile {\bfseries{n\textquotesingle{}existe pas}}. ~\newline
+ En effet le fichier Doxyfile depend du dossier \href{../dataForDoxyfile/}{\texttt{ data\+For\+Doxyfile}} a ne {\bfseries{P\+AS}} suprrimer. (voir \href{https://jothepro.github.io/doxygen-awesome-css/md_docs_extensions.html}{\texttt{ ici}} pour plus d\textquotesingle{}information sur le css) 

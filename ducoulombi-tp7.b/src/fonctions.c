@@ -1,3 +1,12 @@
+/**
+ * @file fonctions.c
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-03
+ * 
+ * @brief 
+ * 
+ */
 #include "fonctions.h"
 
 

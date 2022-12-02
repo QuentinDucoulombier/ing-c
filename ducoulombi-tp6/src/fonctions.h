@@ -18,9 +18,9 @@ void affichage(int tint_tab[M]);
 void inversion(int tint_tab[M]);
 void somme(int tin_tab1[M], int tin_tab2[M], int tin_tabSortie[M]);
 int tranversable(int tint_tab[M]);
-void saisieEntier(char str_nom[M]);
+void saisieChar(char str_nom[M]);
 int palindrome(char str_mot[M]);
 void inversionChaine(char str_mot[M]);
-
+int saisieEntier(void);
 
 #endif

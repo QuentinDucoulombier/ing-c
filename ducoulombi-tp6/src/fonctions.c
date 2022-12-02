@@ -57,7 +57,7 @@ int tranversable(int tint_tab[M])
     
 }
 
-void saisieEntier(char str_nom[M])
+void saisieChar(char str_nom[M])
 {
     printf("Veuillez saisir un string de taille 19: ");
     int int_outScan = scanf("%s", str_nom);
@@ -97,3 +97,20 @@ int palindrome(char str_mot[M])
     
 }
 */
+
+/// @brief fonction qui permet de rentrer un entier
+/// @return le nombre saisie
+int saisieEntier(void)
+{
+    int int_n = 0;
+    int int_outScan = scanf("%d", &int_n);
+    if(int_outScan)
+    {
+        return(int_n);
+    }
+    else
+    {
+        fprintf(stderr, "Entree incorrecte\n");
+        exit(EXIT_FAILURE);
+    }
+}

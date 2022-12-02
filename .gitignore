@@ -54,3 +54,6 @@ dkms.conf
 #zip files
 *.zip
 *.tar
+
+# tex files
+*.tex

@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fichier qui contient l'appel de l'ensemble des fonctions/procédure de tri
  * 
  */
 #ifndef __tri_h_
@@ -16,7 +16,7 @@
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief procédure qui permet de trier un tableau d’entier en utilisant la méthode du tri insertion.
  * 
  * @param pint_tab 
  * @param int_taille 
@@ -29,12 +29,12 @@ void triInsertion(int* pint_tab, int int_taille);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fonction qui permet de copier dans un tableau dest les valeurs du tableau src allant de l’indice debut à l’indice fin.
  * 
  * @param src 
  * @param debut 
  * @param fin 
- * @return int* 
+ * @return la copie du sous tableau
  */
 int* copierSousTableau(int* src, int debut, int fin);
 
@@ -44,7 +44,8 @@ int* copierSousTableau(int* src, int debut, int fin);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief procédure qui permet de fusionner deux tableaux triés de façon croissante tab1 et tab2 dans un tableau résultat tabRes qui sera lui aussi trié de façon croissante.
+
  * 
  * @param tab1 
  * @param taille1 
@@ -60,7 +61,7 @@ void fusion(int* tab1, int taille1, int* tab2, int taille2, int* tabRes);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief procédure qui trie un tableau de façon croissante grace au fonctions/procedure precedente.
  * 
  * @param tab 
  * @param taille 
@@ -73,7 +74,8 @@ void triFusion(int* tab, int taille);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fonction qui recherche les valeurs minimum et maximum du tableau tab
+
  * 
  * @param tab 
  * @param taille 
@@ -88,7 +90,7 @@ void minMaxTableau(int* tab, int taille, int* min, int* max);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fonction qui permet de déterminer la fréquence d’apparition de chaque élément du tableau tab.
  * 
  * @param tab 
  * @param taille 
@@ -104,7 +106,7 @@ void histogramme(int* tab, int taille, int* histo, int tailleH, int min);
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief procédure qui trie un tableau de façon croissante en utilisant les procedures/fonctions precendent.
  * 
  * @param tab 
  * @param taille 

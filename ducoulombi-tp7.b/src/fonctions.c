@@ -4,12 +4,14 @@
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fichier fonctions qui contient l'ensemble des fonctions pour le tableau dynamique et pour saisir un entier
  * 
  */
 #include "fonctions.h"
 
-
+/// @brief alloue le tableau
+/// @param int_taille 
+/// @return le tableau alloué
 int* allouer(int int_taille)
 {
     int* pint_tab;
@@ -22,6 +24,9 @@ int* allouer(int int_taille)
     return pint_tab;
 }
 
+/// @brief initialise le tableau de facon random
+/// @param int_taille 
+/// @param pint_tab 
 void initialisation(int int_taille, int* pint_tab)
 {
     srand(time(NULL));
@@ -32,6 +37,9 @@ void initialisation(int int_taille, int* pint_tab)
     
 }
 
+/// @brief affiche le tableau
+/// @param int_taille 
+/// @param pint_tab 
 void affichage(int int_taille, int* pint_tab)
 {
     for (int i = 0; i < int_taille; i++)
@@ -42,6 +50,8 @@ void affichage(int int_taille, int* pint_tab)
 
 }
 
+/// @brief libere le tableau
+/// @param pint_tab 
 void liberer(int* pint_tab)
 {
 
@@ -54,7 +64,6 @@ void liberer(int* pint_tab)
 int saisieEntier(void)
 {
     int int_n = 0;
-    printf("Veuillez saisir un entier: ");
     int int_outScan = scanf("%d", &int_n);
     if(int_outScan)
     {

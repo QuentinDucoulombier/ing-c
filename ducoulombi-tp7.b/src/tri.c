@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-03
  * 
- * @brief 
+ * @brief fichier qui contient l'ensemble des fonctions/procedures de tri
  * 
  */
 #include "tri.h"
@@ -15,24 +15,24 @@
 /*Tri par insertion*/
 /*-----------------*/
 
-/// @brief 
+/// @brief procédure qui permet de trier un tableau d’entier en utilisant la méthode du tri insertion.
 /// @param pint_tab 
 /// @param int_taille 
 void triInsertion(int* pint_tab, int int_taille)
 {
-    int int_elementInsere;
+  int int_elementInsere;
 
-    int j;
-    for (int i = 1; i < int_taille; i++)
+  int j;
+  for (int i = 1; i < int_taille; i++)
+  {
+    int_elementInsere = pint_tab[i];
+
+    for (j = i; j > 0 && pint_tab[j - 1] > int_elementInsere; j--)
     {
-        int_elementInsere = pint_tab[i];
-
-        for (j = i; j > 0 && pint_tab[j - 1] > int_elementInsere; j--)
-        {
-            pint_tab[j] = pint_tab[j - 1];
-        }
-        pint_tab[j] = int_elementInsere;
+      pint_tab[j] = pint_tab[j - 1];
     }
+    pint_tab[j] = int_elementInsere;
+  }
 }
 
 
@@ -40,11 +40,11 @@ void triInsertion(int* pint_tab, int int_taille)
 /*Tri fusion*/
 /*----------*/
 
-/// @brief 
+/// @brief fonction qui permet de copier dans un tableau dest les valeurs du tableau src allant de l’indice debut à l’indice fin.
 /// @param src 
 /// @param debut 
 /// @param fin 
-/// @return 
+/// @return la copie du sous tableau
 int* copierSousTableau(int* src, int debut, int fin)
 {
     int* tabDest;
@@ -56,7 +56,7 @@ int* copierSousTableau(int* src, int debut, int fin)
     return tabDest;    
 }
 
-/// @brief 
+/// @brief procédure qui permet de fusionner deux tableaux triés de façon croissante tab1 et tab2 dans un tableau résultat tabRes qui sera lui aussi trié de façon croissante.
 /// @param tab1 
 /// @param taille1 
 /// @param tab2 
@@ -83,7 +83,7 @@ void fusion(int* tab1, int taille1, int* tab2, int taille2, int* tabRes)
   }
 }
 
-/// @brief 
+/// @brief procédure qui trie un tableau de façon croissante grace au fonctions/procedure precedente.
 /// @param tab 
 /// @param taille 
 void triFusion(int* tab, int taille) 
@@ -102,26 +102,37 @@ void triFusion(int* tab, int taille)
   liberer(tab2);
 }
 
-/// @brief 
+
+/*--------------------*/
+/*Tri par dénombrement*/
+/*--------------------*/
+
+/// @brief fonction qui recherche les valeurs minimum et maximum du tableau tab
 /// @param tab 
 /// @param taille 
 /// @param min 
 /// @param max 
 void minMaxTableau(int* tab, int taille, int* min, int* max) 
 {
+  //"*min" et non "min" car affectation de pointeur vers pointeur et non pointeur vers int
+  //min et max les premiere valeur du tab
   *min = tab[0];
   *max = tab[0];
-  for (int i = 1; i < taille; i++) {
-    if (tab[i] < *min) {
+  // boucle de 1 a taille et non 0 car deja initialisé a tab[0]  
+  for (int i = 1; i < taille; i++) 
+  {
+    if (tab[i] < *min) 
+    {
       *min = tab[i];
     }
-    if (tab[i] > *max) {
+    if (tab[i] > *max) 
+    {
       *max = tab[i];
     }
   }
 }
 
-/// @brief 
+/// @brief fonction qui permet de déterminer la fréquence d’apparition de chaque élément du tableau tab.
 /// @param tab 
 /// @param taille 
 /// @param histo 
@@ -129,29 +140,35 @@ void minMaxTableau(int* tab, int taille, int* min, int* max)
 /// @param min 
 void histogramme(int* tab, int taille, int* histo, int tailleH, int min) 
 {
-  for (int i = 0; i < tailleH; i++) {
-    histo[i] = 0;
+  for (int i = 0; i < tailleH; i++) 
+  {
+    //valeur inbitialisé a 0
+    histo[i] = 0; 
   }
-  for (int i = 0; i < taille; i++) {
+  for (int i = 0; i < taille; i++) 
+  {
+    //incremente
     histo[tab[i] - min]++;
   }
 }
 
-/// @brief 
+/// @brief procédure qui trie un tableau de façon croissante.
 /// @param tab 
 /// @param taille 
 void triDenombrement(int* tab, int taille) 
 {
-  int min, max;
+  int min, max, k;
+  k = 0;
   minMaxTableau(tab, taille, &min, &max);
-  int* histo = malloc((max - min + 1) * sizeof(int));
+  int* histo = allouer(max - min + 1);
   histogramme(tab, taille, histo, max - min + 1, min);
-  int k = 0;
-  for (int i = 0; i < max - min + 1; i++) {
-    for (int j = 0; j < histo[i]; j++) {
+  for (int i = 0; i < max - min + 1; i++) 
+  {
+    for (int j = 0; j < histo[i]; j++) 
+    {
       tab[k] = i + min;
       k++;
     }
   }
-  free(histo);
+  liberer(histo);
 }

@@ -36,7 +36,7 @@ clean:
 mrproper: clean
 	$(RM) *.exe
 cleanAll: mrproper
-	$(RM) -r $(DOCDIR)/*
+	$(RM) -r $(DOCDIR)/html $(DOCDIR)/latex
 
 # Copie les fichiers dans la save
 save:

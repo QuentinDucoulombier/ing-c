@@ -67,36 +67,37 @@ void saisieChar(char str_nom[M])
         fprintf(stderr, "Entree incorrecte\n");
     }
 }
-/*
-void inversionChaine(char str_mot[M])
-{
-    int temp;
-    int i;
-    int j;
-    for (i = 0,j = M-1; i < j; i++, j--)
-    {
-        temp = 0;
-        temp = str_mot[i];
-        str_mot[i] = str_mot[j];
-        str_mot[j] = temp;
-    }   
-}
 
-
-int palindrome(char str_mot[M])
+int palindrome(char str_chaine[M]) 
 {
     int i;
-    int j;
-    for (i = 0,j = M-1; i < j; i++, j--)
+    int taille = 0;
+    int bool = 1; //on initialise a vrai
+
+    for (i = 0; str_chaine[i] != '\0'; i++) 
     {
-        if(str_mot[i] == str_mot[j])
-        {
-            
-        }
+        taille++;
     }
-    
+    //printf("%d", taille);
+    //printf("test %s\n", str_chaine);
+
+    i = 0;
+    do
+    {
+        //printf("debut %d, %c\n", i, str_chaine[i]);
+        //printf("fin %d, %c\n", i, str_chaine[taille - i - 1]);
+        if (str_chaine[i] != str_chaine[taille - i - 1]) 
+        {
+            //si c'est le cas bool passe a faux
+            bool = 0;
+        }
+        i++;
+    } while ((i < taille - 1) && (str_chaine[i] == str_chaine[taille - i - 1]));
+    //On quitte la boucle si on a fait verifier l'ensemble des valeurs ou si ce n'est pas un palindrome
+
+    //printf("bool f%d\n", bool);
+    return(bool);
 }
-*/
 
 /// @brief fonction qui permet de rentrer un entier
 /// @return le nombre saisie

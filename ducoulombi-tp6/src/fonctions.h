@@ -21,6 +21,7 @@ int tranversable(int tint_tab[M]);
 void saisieChar(char str_nom[M]);
 int palindrome(char str_mot[M]);
 void inversionChaine(char str_mot[M]);
+int palindrome(char str[M]);
 int saisieEntier(void);
 
 #endif

@@ -18,9 +18,8 @@
 int affichageMenu(void)
 {
     int int_choix = -1;
-    printf("------ Fonction pour approximer pi ------\n");
-	printf ("1 - Approximation par aire d'un disque par quadrillage\n");
-	printf ("2 - Approximation de Madhava de Sangamagrama\n");
+	printf ("1 - Inverser un tableau\n");
+	printf ("2 - Faure la somme de deux tableau\n");
 	printf ("3 - Approximation de John Wallis\n");
     printf ("\n");
     printf("------ Fonction pour approximer racine de 2 ------\n");
@@ -44,7 +43,7 @@ void caseMenu(int int_choix)
     int pionPlace;
     int gagner;
     int matriceP[LIGNES][COLONNES];
-
+    srand(time(NULL));
     switch (int_choix) 
     {
         case 1 : 

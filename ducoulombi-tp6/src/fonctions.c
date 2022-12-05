@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-11-30
  * 
- * @brief 
+ * @brief ensemble des fonctions
  * 
  */
 
@@ -34,10 +34,7 @@ void inversion(int tint_tab[M])
     }   
 }
 
-/// brief verifier for
-/// param tin_tab1 
-/// param tin_tab2 
-/// param tin_tabSortie 
+
 void somme(int tin_tab1[M], int tin_tab2[M], int tin_tabSortie[M])
 {
     for (int i = 0; i <= M; i++)
@@ -84,7 +81,7 @@ int palindrome(char str_chaine[M])
     }
 
     i = 0;
-
+    //ca marche mais ce n'est pas beau
     do
     {
         printf("debut %d, %c\n", i, str_chaine[i]);
@@ -95,7 +92,7 @@ int palindrome(char str_chaine[M])
             bool = 0;
         }
         i++;
-    } while ((i < taille));
+    } while ((i < taille)); //J'avais fait une super boucle while mais ca ne marche pas :(
 
     return(bool);
 }

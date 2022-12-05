@@ -4,11 +4,9 @@
  * @version 0.1
  * @date 2022-12-02
  * 
- * @brief 
+ * @brief fichier main
  * 
  */
-
-
 #include "fonctions.h"
 #include "puissance4.h"
 #include "menu.h"

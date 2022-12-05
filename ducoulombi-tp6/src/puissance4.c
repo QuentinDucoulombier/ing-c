@@ -36,9 +36,9 @@ void affichageP4 (int tint_tab[LIGNES][COLONNES])
             if (tint_tab[i][j]==-1)
             printf("  | ");
             if (tint_tab[i][j]==1)  
-            printf("X | ");
+            printf("\033[0;31mX\033[0m | ");
             if (tint_tab[i][j]==2)
-            printf("O | ");
+            printf("\033[0;34mO\033[0m | ");
         }
         printf("\n");
     }

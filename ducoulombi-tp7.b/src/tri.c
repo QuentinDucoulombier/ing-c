@@ -23,7 +23,8 @@ void triInsertion(int* pint_tab, int int_taille)
   int int_elementInsere;
 
   int j;
-  for (int i = 1; i < int_taille; i++)
+  int i;
+  for (i = 1; i < int_taille; i++)
   {
     int_elementInsere = pint_tab[i];
 
@@ -47,13 +48,13 @@ void triInsertion(int* pint_tab, int int_taille)
 /// @return la copie du sous tableau
 int* copierSousTableau(int* src, int debut, int fin)
 {
-    int* tabDest;
-    tabDest = allouer(fin - debut);
-    for (int i = debut; i < fin ; i++)
-    {
-        tabDest[i - debut] = src[i];
-    }
-    return tabDest;    
+  int* tabDest;
+  tabDest = allouer(fin - debut);
+  for (int i = debut; i < fin ; i++)
+  {
+      tabDest[i - debut] = src[i];
+  }
+  return tabDest;    
 }
 
 /// @brief procédure qui permet de fusionner deux tableaux triés de façon croissante tab1 et tab2 dans un tableau résultat tabRes qui sera lui aussi trié de façon croissante.
@@ -64,21 +65,26 @@ int* copierSousTableau(int* src, int debut, int fin)
 /// @param tabRes 
 void fusion(int* tab1, int taille1, int* tab2, int taille2, int* tabRes) 
 {
-  int i, j, k;
-  i = 0;
-  j = 0;
-  k = 0;
-  while (i < taille1 && j < taille2) {
-    if (tab1[i] < tab2[j]) {
+  int i = 0;
+  int j = 0;
+  int k = 0;
+  while ((i < taille1) && (j < taille2)) 
+  {
+    if (tab1[i] < tab2[j]) 
+    {
       tabRes[k++] = tab1[i++];
-    } else {
+    } 
+    else 
+    {
       tabRes[k++] = tab2[j++];
     }
   }
-  while (i < taille1) {
+  while (i < taille1) 
+  {
     tabRes[k++] = tab1[i++];
   }
-  while (j < taille2) {
+  while (j < taille2) 
+  {
     tabRes[k++] = tab2[j++];
   }
 }
@@ -88,7 +94,7 @@ void fusion(int* tab1, int taille1, int* tab2, int taille2, int* tabRes)
 /// @param taille 
 void triFusion(int* tab, int taille) 
 {
-  if (taille <= 1) 
+  if (taille <= 1) //changer
   {
     return;
   }

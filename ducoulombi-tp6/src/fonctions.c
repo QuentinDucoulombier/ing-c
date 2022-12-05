@@ -34,10 +34,10 @@ void inversion(int tint_tab[M])
     }   
 }
 
-/// @brief verifier for
-/// @param tin_tab1 
-/// @param tin_tab2 
-/// @param tin_tabSortie 
+/// brief verifier for
+/// param tin_tab1 
+/// param tin_tab2 
+/// param tin_tabSortie 
 void somme(int tin_tab1[M], int tin_tab2[M], int tin_tabSortie[M])
 {
     for (int i = 0; i <= M; i++)
@@ -77,25 +77,26 @@ int palindrome(char str_chaine[M])
     for (i = 0; str_chaine[i] != '\0'; i++) 
     {
         taille++;
+        if(str_chaine[i] == ' ')
+        {
+            str_chaine[i] = '_';
+        }
     }
-    //printf("%d", taille);
-    //printf("test %s\n", str_chaine);
 
     i = 0;
+
     do
     {
-        //printf("debut %d, %c\n", i, str_chaine[i]);
-        //printf("fin %d, %c\n", i, str_chaine[taille - i - 1]);
+        printf("debut %d, %c\n", i, str_chaine[i]);
+        printf("fin %d, %c\n", i, str_chaine[taille - i - 1]);
         if (str_chaine[i] != str_chaine[taille - i - 1]) 
         {
             //si c'est le cas bool passe a faux
             bool = 0;
         }
         i++;
-    } while ((i < taille - 1) && (str_chaine[i] == str_chaine[taille - i - 1]));
-    //On quitte la boucle si on a fait verifier l'ensemble des valeurs ou si ce n'est pas un palindrome
+    } while ((i < taille));
 
-    //printf("bool f%d\n", bool);
     return(bool);
 }
 

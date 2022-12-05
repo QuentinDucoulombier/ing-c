@@ -28,20 +28,7 @@
  */
 int main(int argc, char *argv[])
 {
-  //caseMenu(affichageMenu());
-    char str_mot[M];
-
-    printf("Entrez une chaine: ");
-    scanf("%s", str_mot); //changer fonctions
-
-    if (palindrome(str_mot)) 
-    {
-        printf("%s est un palindrome\n", str_mot);
-    } 
-    else 
-    {
-        printf("%s n'est pas un palindrome\n", str_mot);
-    }
+    caseMenu(affichageMenu());
 
     return 0;
 }

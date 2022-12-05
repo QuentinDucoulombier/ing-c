@@ -23,9 +23,8 @@ int affichageMenu(void)
 	printf ("3 - Approximation de John Wallis\n");
     printf ("\n");
     printf("------ Fonction pour approximer racine de 2 ------\n");
-    printf ("4 - Approximation de Isaac Newton\n");
-	printf ("5 - Approximation de Edmund Halley\n");
-	printf ("6 - Approximation par la methode de Théon de Smyrne\n");
+    printf ("4 - Puissance 4\n");
+	printf ("5 - Palindrome\n");
     	/* Demande du choix a l'utilisateur */
 	printf ("Quel est votre choix : ");
     int_choix = saisieEntier();
@@ -43,6 +42,7 @@ void caseMenu(int int_choix)
     int pionPlace;
     int gagner;
     int matriceP[LIGNES][COLONNES];
+    char str_mot[M];
     srand(time(NULL));
     switch (int_choix) 
     {
@@ -83,10 +83,30 @@ void caseMenu(int int_choix)
             affichageDebut(joueur);
             initialisation(matriceP);
             pionPlace = jouer(matriceP, joueur);
-            gagner = aGagne(matriceP);
-            tourDeJeu(matriceP, gagner, joueur);
-            affichageP4(matriceP);
+            /*verifier si le if marche*/
+            if(pionPlace)
+            {
+                gagner = aGagne(matriceP);
+                tourDeJeu(matriceP, gagner, joueur);
+                affichageP4(matriceP);
+            }
+            else
+            {
+                pionPlace = jouer(matriceP, joueur);
+            }
+            break;
+        case 5 :
+            printf("Entrez une chaine: ");
+            scanf("%s", str_mot); //changer fonctions
 
+            if (palindrome(str_mot)) 
+            {
+                printf("%s est un palindrome\n", str_mot);
+            } 
+            else 
+            {
+                printf("%s n'est pas un palindrome\n", str_mot);
+            }
             break;
         default :
             break;

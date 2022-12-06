@@ -127,7 +127,7 @@ int aGagne(int tint_tab[LIGNES][COLONNES])
 
     for (int i = 0; i < LIGNES-3; i++)
     {
-        for (int j = 0; j < COLONNES; j++)
+        for (int j = 0; j < COLONNES; j++) //peut etre colonnes - 3
         {
             if ((tint_tab[i][j] != -1) && (tint_tab[i][j] == tint_tab[i+1][j-1]) && (tint_tab[i][j] == tint_tab[i+2][j-2]) && (tint_tab[i][j] == tint_tab[i+3][j-3]))
             {

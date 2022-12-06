@@ -109,6 +109,7 @@ int aGagne(int ttint_plateau[N][N])
         {
             if(ttint_plateau[i][j] != -1)
             {
+                /*lignes*/
                 if(i<N-3)
                 {
                     if(ttint_plateau[i][j] == ttint_plateau[i+1][j] && ttint_plateau[i][j] == ttint_plateau[i+2][j] && ttint_plateau[i][j] == ttint_plateau[i+3][j])
@@ -116,6 +117,7 @@ int aGagne(int ttint_plateau[N][N])
                         return ttint_plateau[i][j];
                     }
                 }
+                /*colonnes*/
                 if(j<N-3)
                 {
                     if(ttint_plateau[i][j] == ttint_plateau[i][j+1] && ttint_plateau[i][j] == ttint_plateau[i][j+2] && ttint_plateau[i][j] == ttint_plateau[i][j+3])
@@ -123,6 +125,7 @@ int aGagne(int ttint_plateau[N][N])
                         return ttint_plateau[i][j];
                     }
                 }
+                /*diagonales 1*/
                 if(i<N-3 && j<N-3)
                 {
                     if(ttint_plateau[i][j] == ttint_plateau[i+1][j+1] && ttint_plateau[i][j] == ttint_plateau[i+2][j+2] && ttint_plateau[i][j] == ttint_plateau[i+3][j+3])
@@ -130,6 +133,7 @@ int aGagne(int ttint_plateau[N][N])
                         return ttint_plateau[i][j];
                     }
                 }
+                /*diagonales 2*/
                 if(i<N-3 && j>2)
                 {
                     if(ttint_plateau[i][j] == ttint_plateau[i+1][j-1] && ttint_plateau[i][j] == ttint_plateau[i+2][j-2] && ttint_plateau[i][j] == ttint_plateau[i+3][j-3])
@@ -205,12 +209,12 @@ void tourDeJeu_rotation(int ttint_plateau[N][N])
             printf("Joueur %d, entrez une colonne : ", int_joueur+1);
             scanf("%d", &int_x);
         }
-        printf("Joueur %d, entrez le nombre de rotation : ", int_joueur+1);
+        /*printf("Joueur %d, entrez le nombre de rotation : ", int_joueur+1);
         scanf("%d", &int_rotation);
         for(int i=0; i<int_rotation; i++)
         {
             rotation_gravite(ttint_plateau);
-        }
+        }*/
         int_joueur = (int_joueur+1)%2;
     }
     affichage(ttint_plateau);

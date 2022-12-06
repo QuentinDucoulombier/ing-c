@@ -71,14 +71,6 @@ int palindrome(char str_chaine[M])
     int taille = 0;
     int bool = 1; //on initialise a vrai
 
-    for (i = 0; str_chaine[i] != '\0'; i++) 
-    {
-        taille++;
-        if(str_chaine[i] == ' ')
-        {
-            str_chaine[i] = '_';
-        }
-    }
 
     i = 0;
     //ca marche mais ce n'est pas beau

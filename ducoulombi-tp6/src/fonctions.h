@@ -44,7 +44,7 @@ void inversion(int tint_tab[M]);
  * @version 0.1
  * @date 2022-12-06
  * 
- * @brief calcul la somme de deux tableaux d'entier et le ressort dans un tableauSortie
+ * @brief calcule de la somme de deux tableaux d'entier et le ressort dans un tableauSortie
  * 
  * @param tin_tab1 
  * @param tin_tab2 

@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-02
  * 
- * @brief 
+ * @brief ensemble d'appel de fonctions pour le menu
  * 
  */
 
@@ -12,7 +12,6 @@
 #include "menu.h"
 #include "fonctions.h"
 #include "puissance4.h"
-
 
 
 int affichageMenu(void)

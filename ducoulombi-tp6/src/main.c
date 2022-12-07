@@ -18,15 +18,15 @@
  * @version 0.1
  * @date 2022-11-30
  * 
- * @brief 
+ * @brief fonction main
  * 
  * @param argc 
  * @param argv 
- * @return int 
+ * @return 0 si pas d'erreur
  */
 int main(int argc, char *argv[])
 {
     caseMenu(affichageMenu());
 
-    return 0;
+    return(0);
 }

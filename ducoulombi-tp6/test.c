@@ -203,6 +203,7 @@ void tourDeJeu_rotation(int ttint_plateau[N][N])
     {
         affichage(ttint_plateau);
         printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+        
         scanf("%d", &int_x);
         while(jouer(ttint_plateau, int_joueur, int_x) == 0)
         {

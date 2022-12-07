@@ -1,236 +1,252 @@
-/**
- * @file puissance4.c
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-02
- * 
- * @brief ensemble de fonctions pour faire le puissance4
- * 
- */
+/*
+Le jeu de Puissance 4 se joue sur une grille carrée de N × N cases (N défini préalablement). Deux
+joueurs s’affrontent. Ils doivent remplir chacun à leur tour une des colonnes de la grille par leur pion.
+Les pions seront symbolisés par des lettres : O ou X. La grille est en position verticale, ce qui fait que les pièces "tombent" au plus bas de la grille.
+
+Initialisation
+Au tout début du jeu, les cases du plateau seront initialisées à -1, pour signifier qu’aucun joueur n’a joué. Implémenter la méthode d’initialisation :
+void init (int ttint_plateau[N][N]);
+
+Affichage
+À chaque tour de jeu, le plateau sera affiché afin de visualiser l’avancement de la partie. Implémenter
+la méthode affichage qui écrit ’X’ lorsque le joueur 1 a joué sur la case, ’O’ s’il s’agit du joueur 2, ou alors ’ ’ s’il n’y a personne.
+void affichage (int ttint_plateau[N][N]);
+
+Jouer
+Les joueurs jouent tour à tour. Écrire une méthode jouer qui permet à un joueur donné de jouer dans
+une colonne spécifique. Si la colonne est pleine, afficher un message d’erreur. La méthode retournera 1 si tout s’est bien passé, et 0 si une erreur est survenue.
+int jouer(int ttint_plateau[N][N], int int_joueur, int int_x );
+
+A gagné
+À la fin de chaque tour de jeu, il faut vérifier si l’un des deux joueurs a gagné. Implémenter la fonction aGagne , qui retourne soit le numéro du joueur gagnant, soit 0 si c’est match nul, soit -1 si la partie n’est pas terminée.
+int aGagne(int ttint_plateau[N][N]);
+
+Tour de jeu
+Écrire la méthode tourDeJeu qui permet de faire jouer les joueurs chacun leur tour, jusqu’à la fin de la partie. Lorsque la partie est finie, la grille complète devra être affichée, ainsi que le vainqueur. Lors d’une erreur de saisie de la part de l’utilisateur, le programme devra demander une nouvelle saisie, jusqu’à ce que l’utilisateur saisisse quelque chose de cohérent.
+void tourDeJeu(int ttint_plateau[N][N]);
+
+*/
 
 #include "puissance4.h"
-#include "fonctions.h"
 
-
-void initialisation(int tint_tab[LIGNES][COLONNES])
+void init (int ttint_plateau[N][N])
 {
-    for (int i = 0; i < LIGNES; i++)
+    for(int i=0; i<N; i++)
     {
-        for (int j = 0; j < COLONNES; j++)
+        for(int j=0; j<N; j++)
         {
-            tint_tab[i][j]=-1;
+            ttint_plateau[i][j] = -1;
         }
-        
     }
 }
 
-
-
-void affichageP4 (int tint_tab[LIGNES][COLONNES])
+void affichageP4 (int ttint_plateau[N][N])
 {
-    for (int i = 0; i < LIGNES; i++)
+    for(int i=0; i<N; i++)
     {
         printf("| ");
-        for (int j = 0; j < COLONNES; j++)
+        for(int j=0; j<N; j++)
         {
-            if (tint_tab[i][j]==-1)
-            printf("  | ");
-            if (tint_tab[i][j]==1)  
-            printf("\033[0;31mX\033[0m | ");
-            if (tint_tab[i][j]==2)
-            printf("\033[0;34mO\033[0m | ");
+            if(ttint_plateau[i][j] == -1)
+            {
+                printf("  | ");
+            }
+            else if(ttint_plateau[i][j] == 0)
+            {
+                printf("\033[0;31mX\033[0m | ");
+            }
+            else if(ttint_plateau[i][j] == 1)
+            {
+                printf("\033[0;34mO\033[0m | ");
+            }
         }
         printf("\n");
     }
-    
 }
 
-
-
-int choixJoueur(void)
+int jouer(int ttint_plateau[N][N], int int_joueur, int int_x )
 {
-    int joueur = -1;
-    do
+    int i = N;
+    while(ttint_plateau[i][int_x] != -1 && i>-1)
     {
-        printf("Quel joueur commence ? (1 ou 2): \n");
-        joueur = saisieEntier();
-    } while ((joueur < 1) || (joueur > 2));
-
-    return(joueur);
-}
-
-void affichageDebut(int joueur)
-{
-    if (joueur == 1)
+        i--;
+    }
+    if(i == -1)
     {
-        printf("Le joueur 1 commence !, son symbole sera X");
+        printf("Erreur, colonne pleine\n");
+        return 0;
     }
     else
     {
-        printf("Le joueur 2 commence !, son symbole sera O");
+        ttint_plateau[i][int_x] = int_joueur;
+        return 1;
     }
-    printf("\n\n");
-
-
-    printf("-------------------------------------\n");
-    printf("-------------Debut du jeu------------\n");
-    printf("-------------------------------------\n\n");
 }
 
-
-int aGagne(int tint_tab[LIGNES][COLONNES])
+int aGagne(int ttint_plateau[N][N])
 {
-    
-    int gagnant = -1;
-
-
-    /*LIGNES*/
-    for (int i = 0; i < LIGNES; i++)
+    int i, j, k, l;
+    for(i=0; i<N; i++)
     {
-        for (int j = 0; j < COLONNES-3; j++)
+        for(j=0; j<N; j++)
         {
-            if ((tint_tab[i][j] != -1) && (tint_tab[i][j] == tint_tab[i][j+1]) && (tint_tab[i][j] == tint_tab[i][j+2]) && (tint_tab[i][j] == tint_tab[i][j+3]))
+            if(ttint_plateau[i][j] != -1)
             {
-                gagnant = tint_tab[i][j];
-            }
-        }       
-    }
-
-
-    /*COLONNES*/
-    for (int j = 0; j < COLONNES; j++)
-    {
-        for (int i = 0; i < LIGNES-3; i++)
-        {
-            if ((tint_tab[i][j] != -1) && (tint_tab[i][j] == tint_tab[i+1][j]) && (tint_tab[i][j] == tint_tab[i+2][j]) && (tint_tab[i][j] == tint_tab[i+3][j]))
-            {
-                gagnant = tint_tab[i][j];
-            }
-        } 
-    }
-
-    /*Diagonale 1*/
-
-    for (int i = 0; i < LIGNES-3; i++)
-    {
-        for (int j = 0; j < COLONNES-3; j++)
-        {
-            if ((tint_tab[i][j] != -1) && (tint_tab[i][j] == tint_tab[i+1][j+1]) && (tint_tab[i][j] == tint_tab[i+2][j+2]) && (tint_tab[i][j] == tint_tab[i+3][j+3]))
-            {
-                gagnant = tint_tab[i][j];
-            } 
-        }
-
-    }
-
-    /*Diagonale 2*/
-
-    for (int i = 0; i < LIGNES-3; i++)
-    {
-        for (int j = 0; j < COLONNES; j++) //peut etre colonnes - 3
-        {
-            if ((tint_tab[i][j] != -1) && (tint_tab[i][j] == tint_tab[i+1][j-1]) && (tint_tab[i][j] == tint_tab[i+2][j-2]) && (tint_tab[i][j] == tint_tab[i+3][j-3]))
-            {
-                gagnant = tint_tab[i][j];
+                /*lignes*/
+                if(i<N-3)
+                {
+                    if(ttint_plateau[i][j] == ttint_plateau[i+1][j] && ttint_plateau[i][j] == ttint_plateau[i+2][j] && ttint_plateau[i][j] == ttint_plateau[i+3][j])
+                    {
+                        return ttint_plateau[i][j];
+                    }
+                }
+                /*colonnes*/
+                if(j<N-3)
+                {
+                    if(ttint_plateau[i][j] == ttint_plateau[i][j+1] && ttint_plateau[i][j] == ttint_plateau[i][j+2] && ttint_plateau[i][j] == ttint_plateau[i][j+3])
+                    {
+                        return ttint_plateau[i][j];
+                    }
+                }
+                /*diagonales 1*/
+                if(i<N-3 && j<N-3)
+                {
+                    if(ttint_plateau[i][j] == ttint_plateau[i+1][j+1] && ttint_plateau[i][j] == ttint_plateau[i+2][j+2] && ttint_plateau[i][j] == ttint_plateau[i+3][j+3])
+                    {
+                        return ttint_plateau[i][j];
+                    }
+                }
+                /*diagonales 2*/
+                if(i<N-3 && j>2)
+                {
+                    if(ttint_plateau[i][j] == ttint_plateau[i+1][j-1] && ttint_plateau[i][j] == ttint_plateau[i+2][j-2] && ttint_plateau[i][j] == ttint_plateau[i+3][j-3])
+                    {
+                        return ttint_plateau[i][j];
+                    }
+                }
             }
         }
-
     }
-    
-    if ((gagnant == 1) || (gagnant == 2))
+    for(k=0; k<N; k++)
     {
-        printf("le gagnant est le joueur %d\n", gagnant);
+        for(l=0; l<N; l++)
+        {
+            if(ttint_plateau[k][l] == -1)
+            {
+                return -1;
+            }
+        }
     }
-
-
-
-    return(gagnant);
-
+    return -2;
 }
 
-void tourDeJeu(int tint_tab[LIGNES][COLONNES], int gagnant, int joueur)
+/*
+void rotation_gravite(int ttint_plateau[N][N])
 {
-
-    int max=LIGNES*COLONNES;
-    printf("max %d\n", max);
-    int compteur = 0;
-    
-    
-
-    while ((gagnant == -1) || (compteur == max))
+    int ttint_plateau_rotation[N][N];
+    for(int i=0; i<N; i++)
     {
-        aGagne(tint_tab);
-        printf("---------------------------------------\n\n");
-        if (joueur == 1)
+        for(int j=0; j<N; j++)
         {
-            printf("C'est au tour du joueur 2\n\n");
-            jouer(tint_tab, 2);
-            gagnant = aGagne(tint_tab);
-            printf("---------------------------------------\n\n");
-            printf("C'est au tour du joueur %d\n\n", joueur);
-            jouer(tint_tab, joueur);
-            gagnant = aGagne(tint_tab);
-            
+            ttint_plateau_rotation[i][j] = ttint_plateau[N-j-1][i];
         }
-        else
-        {
-            printf("C'est au tour du joueur 1\n\n");
-            jouer(tint_tab, 1);
-            gagnant = aGagne(tint_tab);
-            printf("---------------------------------------\n\n");
-            printf("C'est au tour du joueur %d\n\n", joueur);
-            jouer(tint_tab, joueur);
-            gagnant = aGagne(tint_tab);
-        }
-        compteur+=2;
-
     }
-
-    if(compteur == max)
+    for(int i=0; i<N; i++)
     {
-        printf("il y a match nul\n");
+        for(int j=0; j<N; j++)
+        {
+            ttint_plateau[i][j] = ttint_plateau_rotation[i][j];
+        }
     }
-    
+    for(int i=0; i<N; i++)
+    {
+        for(int j=0; j<N; j++)
+        {
+            if(ttint_plateau[i][j] != -1)
+            {
+                int k = i;
+                while(ttint_plateau[k+1][j] == -1 && k<N-1)
+                {
+                    ttint_plateau[k+1][j] = ttint_plateau[k][j];
+                    ttint_plateau[k][j] = -1;
+                    k++;
+                }
+            }
+        }
+    }
+}*/
 
-}
-
-int jouer(int tint_plateau[LIGNES][COLONNES], int joueur)
+void tourDeJeu_rotation(int ttint_plateau[N][N])
 {
-    int ligneLocal;
-    int colonneLocal;
-    int chiffreRetourner = 0;
-   
-    affichageP4(tint_plateau);
-    printf("\n");
-    
-    printf("Veuillez saisir la colonne : ");
-    colonneLocal = saisieEntier();
-    while ((colonneLocal < 0) || (colonneLocal > COLONNES-1)){
-        printf("Colonne invalide : ");
-        colonneLocal = saisieEntier();
-    }
-    printf("\n");
-
-    ligneLocal = LIGNES-1;
-
-    if (tint_plateau[0][colonneLocal] != -1)
+    int int_joueur = 0;
+    int int_x;
+    int int_gagne;
+    //int int_rotation;
+    while(aGagne(ttint_plateau) == -1)
     {
-        printf ("Cette colonne est pleine (tu passes donc ton tour !)\n");
-        chiffreRetourner = 0;
+        affichageP4(ttint_plateau);
+        printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+        int_x = saisieEntier();
+        while ((int_x <0) || (int_x > N - 1))
+        {
+            printf("\033[0;31mColonne invalide !\033[0m\n");
+            printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+            int_x = saisieEntier();
+        }
+        while((jouer(ttint_plateau, int_joueur, int_x) == 0))
+        {
+            printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+            int_x = saisieEntier();
+        }
+        
+        /*printf("Joueur %d, entrez le nombre de rotation : ", int_joueur+1);
+        int_rotation = saisieEntier();
+        for(int i=0; i<int_rotation; i++)
+        {
+            rotation_gravite(ttint_plateau);
+        }*/
+        int_joueur = (int_joueur+1)%2;
+    }
+    affichageP4(ttint_plateau);
+    int_gagne = aGagne(ttint_plateau);
+    if(int_gagne == -2)
+    {
+        printf("Match nul\n");
     }
     else
     {
-        while ((tint_plateau[ligneLocal][colonneLocal] == 1) || (tint_plateau[ligneLocal][colonneLocal] == 2))
-        {
-            if (ligneLocal >= 0)
-            {
-                ligneLocal = ligneLocal-1;
-            }
-        }
-        tint_plateau[ligneLocal][colonneLocal]= joueur;
-        chiffreRetourner = 1;
-    
+        printf("Le joueur %d a gagne\n", int_gagne+1);
     }
-    
-    return(chiffreRetourner);
 }
+
+/*
+void tourDeJeu(int ttint_plateau[N][N])
+{
+    int int_joueur = 0;
+    int int_x;
+    int int_gagne;
+    while(aGagne(ttint_plateau) == -1)
+    {
+        affichageP4(ttint_plateau);
+        printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+        scanf("%d", &int_x);
+        while(jouer(ttint_plateau, int_joueur, int_x) == 0)
+        {
+            printf("Joueur %d, entrez une colonne : ", int_joueur+1);
+            scanf("%d", &int_x);
+        }
+        printf("joueur %d\n", int_joueur);
+        int_joueur = (int_joueur + 1)%2;
+    }
+    affichageP4(ttint_plateau);
+    int_gagne = aGagne(ttint_plateau);
+    printf("a gagne %d\n", int_gagne);
+    if(int_gagne == -2)
+    {
+        printf("Match nul\n");
+    }
+    else
+    {
+        printf("Le joueur %d a gagne\n", int_gagne+1);
+    }
+}*/

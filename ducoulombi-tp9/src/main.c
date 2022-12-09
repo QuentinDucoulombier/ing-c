@@ -43,9 +43,20 @@ int main(int argc, char *argv[])
         }*/
     
     //regarder td2
-    joueur croupier;
-    croupier.nom = "croupier";
-    croupier.prenom = "michel";
+    joueur joueur1;
+    joueur* croupier = &joueur1;
+    /*printf("Veuillez saisir votre nom\n");
+    scanf("%s", croupier->nom);
+    printf("Veuillez saisir votre prenom\n");
+    scanf("%s", croupier->prenom);*/
+    strcpy(croupier->nom, "croupier");
+    strcpy(croupier->prenom, "michel");
+    croupier->argent = 2000;
+    donneCarte(paquet, croupier);
+    //rajouter couleur et valeur pour carte
+    printf("nom %s\nprenom %s\nargent%d\ncarte%d\n", croupier->nom, croupier->prenom, croupier->argent, croupier->carte.couleur);
+
+
     
 
     return (0);

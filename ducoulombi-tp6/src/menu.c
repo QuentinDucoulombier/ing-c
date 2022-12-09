@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-02
  * 
- * @brief 
+ * @brief ensemble d'appel de fonctions pour le menu
  * 
  */
 
@@ -14,18 +14,15 @@
 #include "puissance4.h"
 
 
-
 int affichageMenu(void)
 {
     int int_choix = -1;
 	printf ("1 - Inverser un tableau\n");
 	printf ("2 - Faure la somme de deux tableau\n");
-	printf ("3 - Approximation de John Wallis\n");
-    printf ("\n");
-    printf("------ Fonction pour approximer racine de 2 ------\n");
+	printf ("3 - Verifier si un tableau est transversable\n");
     printf ("4 - Puissance 4\n");
 	printf ("5 - Palindrome\n");
-    	/* Demande du choix a l'utilisateur */
+    /* Demande du choix a l'utilisateur */
 	printf ("Quel est votre choix : ");
     int_choix = saisieEntier();
     return(int_choix);
@@ -38,10 +35,8 @@ void caseMenu(int int_choix)
     int tint_tabS[M];
 
 
-    int joueur;
-    int pionPlace;
-    int gagner;
-    int matriceP[LIGNES][COLONNES];
+    
+    int matriceP[N][N];
     char str_mot[M];
     srand(time(NULL));
     switch (int_choix) 
@@ -78,22 +73,8 @@ void caseMenu(int int_choix)
             printf("trasversale : %d\n", tranversable(tint_tab1));
             break;
         case 4 : 
-
-            joueur = choixJoueur();
-            affichageDebut(joueur);
-            initialisation(matriceP);
-            pionPlace = jouer(matriceP, joueur);
-            /*verifier si le if marche*/
-            if(pionPlace)
-            {
-                gagner = aGagne(matriceP);
-                tourDeJeu(matriceP, gagner, joueur);
-                affichageP4(matriceP);
-            }
-            else
-            {
-                pionPlace = jouer(matriceP, joueur);
-            }
+            init(matriceP);
+            tourDeJeu_rotation(matriceP);
             break;
         case 5 :
             printf("Entrez une chaine: ");

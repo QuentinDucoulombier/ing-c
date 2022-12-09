@@ -64,27 +64,27 @@ int* copierSousTableau(int* src, int debut, int fin)
 /// @param tabRes 
 void fusion(int* tab1, int taille1, int* tab2, int taille2, int* tabRes) 
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	while ((i < taille1) && (j < taille2)) 
+	int int_cpt1 = 0;
+	int int_cpt2 = 0;
+	int int_cpt3 = 0;
+	while ((int_cpt1 < taille1) && (int_cpt2 < taille2)) 
 	{
-		if (tab1[i] < tab2[j]) 
+		if (tab1[int_cpt1] < tab2[int_cpt2]) 
 		{
-		tabRes[k++] = tab1[i++];
+			tabRes[int_cpt3++] = tab1[int_cpt1++];
 		} 
 		else 
 		{
-		tabRes[k++] = tab2[j++];
+			tabRes[int_cpt3++] = tab2[int_cpt2++];
 		}
 	}
-	while (i < taille1) 
+	while (int_cpt1 < taille1) 
 	{
-		tabRes[k++] = tab1[i++];
+		tabRes[int_cpt3++] = tab1[int_cpt1++];
 	}
-	while (j < taille2) 
+	while (int_cpt2 < taille2) 
 	{
-		tabRes[k++] = tab2[j++];
+		tabRes[int_cpt3++] = tab2[int_cpt2++];
 	}
 }
 

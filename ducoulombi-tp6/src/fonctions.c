@@ -71,13 +71,17 @@ int palindrome(char str_chaine[M])
     int taille = 0;
     int bool = 1; //on initialise a vrai
 
+    for (i = 0; str_chaine[i] != '\0'; i++) 
+    {
+        taille++;
+    }
 
     i = 0;
     //ca marche mais ce n'est pas beau
     do
     {
-        printf("debut %d, %c\n", i, str_chaine[i]);
-        printf("fin %d, %c\n", i, str_chaine[taille - i - 1]);
+        //printf("debut %d, %c\n", i, str_chaine[i]);
+        //printf("fin %d, %c\n", i, str_chaine[taille - i - 1]);
         if (str_chaine[i] != str_chaine[taille - i - 1]) 
         {
             //si c'est le cas bool passe a faux
@@ -89,8 +93,7 @@ int palindrome(char str_chaine[M])
     return(bool);
 }
 
-/// @brief fonction qui permet de rentrer un entier
-/// @return le nombre saisie
+
 int saisieEntier(void)
 {
     int int_n = 0;

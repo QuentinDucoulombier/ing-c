@@ -1,5 +1,5 @@
 # Commande non recursive
-CC := gcc -Wall
+CC := gcc -Wall -g
 #Copie pour save
 CP := cp -t
 #Supression pour clean

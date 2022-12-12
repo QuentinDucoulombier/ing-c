@@ -118,6 +118,10 @@ void AfficherP(paquet p)
     {
         paquet temp = p;
         int i = 1;
+        int carreau = 0;
+        int coeur = 0;
+        int trefle = 0;
+        int pique = 0;
         while (temp != NULL)
         {
             //printf("couleur: %d et chiffre:%d\n", temp->couleur, temp->chiffre);
@@ -125,15 +129,19 @@ void AfficherP(paquet p)
             {
             case 0:
                 printf("%d couleur: carreau, chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
+                carreau++;
                 break; 
             case 1:
                 printf("%d couleur: coeur et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
+                coeur++;
                 break;
             case 2:
                 printf("%d couleur: trefle et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
+                trefle++;
                 break;
             case 3:
                 printf("%d couleur: pique et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
+                pique++;
                 break;
             default:
                 printf("Couleur inconnue\n");
@@ -142,6 +150,7 @@ void AfficherP(paquet p)
             temp = temp -> suivant;
             i++;
         }
+        printf("carr %d, coeur %d, trefle %d, pique %d\n", carreau, coeur, trefle, pique);
     }
     else
     {
@@ -152,7 +161,7 @@ void AfficherP(paquet p)
 
 void donneCarte(carte *paquet, joueur* joueur)
 {
-    joueur->carte = *paquet;
-
+    joueur -> carte = paquet;
+    paquet = paquet -> suivant;
 
 }

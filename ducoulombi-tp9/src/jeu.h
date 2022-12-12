@@ -53,7 +53,7 @@ typedef carte* paquet;
 typedef struct joueur
 {
     int argent;
-    carte carte[6];
+    paquet carte;
     char nom[30];
     char prenom[30];
 }joueur;

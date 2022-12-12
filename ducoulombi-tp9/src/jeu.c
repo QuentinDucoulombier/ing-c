@@ -152,22 +152,7 @@ void AfficherP(paquet p)
 
 void donneCarte(carte *paquet, joueur* joueur)
 {
-    joueur->carte[0]= paquet[0];
-    paquet++;
-}
+    joueur->carte = *paquet;
 
-void changementValeur(carte* paquet)
-{
-    for (int i = 0; i < 52; i++)
-    {
-        if (paquet[i].chiffre > DIX)
-        {
-            paquet[i].valeur = DIX;
-        }
-        else
-        {
-            paquet[i].valeur = paquet[i].chiffre;
-        }
-        
-    }
+
 }

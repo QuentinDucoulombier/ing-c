@@ -5,6 +5,7 @@
  * @date 2022-12-09
  * 
  * @brief 
+ * @todo debug la fonction melanger
  * 
  */
 
@@ -159,9 +160,63 @@ void AfficherP(paquet p)
     
 }
 
-void donneCarte(carte *paquet, joueur* joueur)
+void donneCarte(paquet *p, joueur* joueur)
 {
-    joueur -> carte = paquet;
-    paquet = paquet -> suivant;
-
+    joueur -> carte = *p;
+    SupprimerDebut(p);
 }
+
+
+int saisieEntier(void)
+{
+    int int_n = 0;
+    int int_outScan = scanf("%d", &int_n);
+    if(int_outScan)
+    {
+        return(int_n);
+    }
+    else
+    {
+        fprintf(stderr, "Entree incorrecte\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void creationJoueur(joueur* croupier, joueur* vraiJoueur)
+{
+    /*Initialisation du croupier*/
+    strcpy(croupier->nom, "croupier");
+    strcpy(croupier->prenom, "michel");
+    croupier->argent = -1; //bank
+    /*Initialisation du joueur*/
+    printf("\nVeuillez saisir votre nom: ");
+    scanf("%s", vraiJoueur->nom);
+    printf("\nVeuillez saisir votre prenom: ");
+    scanf("%s", vraiJoueur->prenom);
+    printf("\nVeuillez saisir votre mise total: ");
+    vraiJoueur->argent = saisieEntier();
+}
+
+/*
+int Verifjeu(joueur* joueur, int etat)
+{
+    joueur->somme += joueur->carte->valeur;
+    if (joueur->somme > 21)
+    {
+        return 0;
+    }
+}
+
+
+void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
+{
+    donneCarte(&p, croupier);
+    donneCarte(&p, joueur);
+    int etat = 0;
+    while (verifJeu())
+    {
+        
+    }
+    
+}*/
+

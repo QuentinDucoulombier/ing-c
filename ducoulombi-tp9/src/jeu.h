@@ -54,6 +54,7 @@ typedef struct joueur
 {
     int argent;
     paquet carte;
+    int somme;
     char nom[30];
     char prenom[30];
 }joueur;
@@ -77,6 +78,7 @@ void initialiserPaquet(paquet *p);
  * @date 2022-12-12
  * 
  * @brief 
+ * @todo debugger la fonction
  * 
  * @param p 
  */
@@ -95,7 +97,7 @@ void melangerPaquet(paquet *p);
  * @param paquet 
  * @param joueur 
  */
-void donneCarte(carte *paquet, joueur* joueur);
+void donneCarte(paquet *paquet, joueur* joueur);
 
 /**
  * 
@@ -119,8 +121,39 @@ void changementValeur(carte* paquet);
  */
 void AfficherP(paquet p);
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-12
+ * 
+ * @brief 
+ * 
+ * @param p 
+ */
 void Compter (paquet p);
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-12
+ * 
+ * @brief 
+ * 
+ */
+void creationJoueur(joueur* croupier, joueur* vraiJoueur);
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-12
+ * 
+ * @brief 
+ * 
+ * @return int 
+ */
+int saisieEntier(void);
 
 #endif

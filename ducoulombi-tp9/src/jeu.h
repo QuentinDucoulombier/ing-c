@@ -156,4 +156,32 @@ void creationJoueur(joueur* croupier, joueur* vraiJoueur);
  */
 int saisieEntier(void);
 
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-13
+ * 
+ * @brief 
+ * 
+ * @param joueur 
+ * @param etat 
+ * @return int 
+ */
+int verifJeu(joueur* joueur, int etat);
+
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-13
+ * 
+ * @brief 
+ * 
+ */
+void tourDeJeu(joueur* croupier, joueur* joueur, paquet p);
+
+
 #endif

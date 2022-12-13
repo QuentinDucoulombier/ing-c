@@ -160,9 +160,35 @@ void AfficherP(paquet p)
     
 }
 
+/*verifier ces fonctions*/
+void SupprimerFin(paquet* l)
+{
+    paquet temp = (*l);
+
+
+    if (temp != NULL)
+    {
+        while (temp -> suivant -> suivant != NULL)
+        {
+            temp = temp -> suivant;
+
+        }
+        temp -> suivant = NULL;
+    }
+    else
+    {
+        temp = NULL;
+    }
+}
+
 void donneCarte(paquet *p, joueur* joueur)
 {
     joueur -> carte = *p;
+    while (joueur -> carte -> suivant != NULL)
+    {
+        SupprimerFin(&joueur->carte);
+    }
+    
     SupprimerDebut(p);
 }
 
@@ -197,26 +223,52 @@ void creationJoueur(joueur* croupier, joueur* vraiJoueur)
     vraiJoueur->argent = saisieEntier();
 }
 
-/*
-int Verifjeu(joueur* joueur, int etat)
+
+int verifJeu(joueur* joueur, int etat)
 {
     joueur->somme += joueur->carte->valeur;
-    if (joueur->somme > 21)
+    printf("Somme %d\n", joueur->somme);
+    if(!etat)
     {
-        return 0;
+        if (joueur->somme > 21)
+        {
+            /*transformer 1 en 21*/
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
+    return 1;
+    
 }
 
 
 void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
 {
+    int out;
+    int etat = 0;
+    donneCarte(&p, joueur);
     donneCarte(&p, croupier);
     donneCarte(&p, joueur);
-    int etat = 0;
-    while (verifJeu())
-    {
-        
-    }
-    
-}*/
+    donneCarte(&p, croupier);
+    AfficherP(joueur->carte);
 
+    //AfficherP(croupier->carte);
+    
+   /*
+    while (verifJeu(joueur, etat))
+    {
+        printf("0.Distribuer\n");
+        printf("1.Rester\n");
+        scanf("%d", &out);
+        if(out)
+        {
+            donneCarte(&p, joueur);
+        }
+
+    }
+    printf("\nout\n");*/
+    
+}

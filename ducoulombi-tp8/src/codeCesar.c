@@ -69,3 +69,8 @@ char *codeCesar(char *str, int decalage)
     strCrypte[i] = '\0';
     return strCrypte;
 }
+
+char* codeDeVigenere(char* str)
+{
+    
+}

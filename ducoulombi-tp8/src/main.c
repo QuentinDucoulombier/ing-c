@@ -10,6 +10,18 @@
 #include "fonctions.h"
 #include "codeCesar.h"
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-17
+ * 
+ * @brief 
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char *argv[])
 {
     if(argc != 7)
@@ -19,47 +31,21 @@ int main(int argc, char *argv[])
     }
     else
     {
-        /*for (int i = 0; i < argc; i++)
-        {
-            printf("%d -> %s\n", i, argv[i]);
-        }
-        */
-
         if(strcmp(argv[2],"cesar") == 0)
         {
             /*Affichage de la chaine inital*/
             printf("Chaine intial: %s\n", argv[6]);
             /*Calcul du decalage*/
             long decalage = verifConversion(argv[4]);
-
-            /*Initialisation de la chaine final
-            //char chaineFinal[strlen(argv[6])];
-            Lancement du codeCesar
-            //codeCesar(decalage, argv[6], chaineFinal);*/
-
-            /*Affichage de la chaine encryptée*/
-            //printf("chaine final: %s\n", chaineFinal);
+            /*Affichage de la chaine final*/
             printf("Chaine final: %s\n", codeCesar(argv[6], decalage));
         }
-        else if (strcmp(argv[2],"cesar") == 0)
+        else if (strcmp(argv[2],"vigenere") == 0)
         {
-            /* code */
-            
+            printf("Chaine intial: %s\n", argv[6]);
+            printf("Chaine final: %s\n", codeDeVigenere(argv[6], argv[4]));
         }
-        
     }
 
-
-    /*
-    printf("%s\n", argv[1]);
-    char* line;
-    size_t nb1;
-    int nb2;
-
-    printf("%d \n", (int)nb1);
-    line = NULL;
-    nb2 = getline(&line, &nb1, stdin);
-    printf("%d \t %d \t %s \n", (int)nb1, nb2, line);*/
-    
     return(0);
 } 

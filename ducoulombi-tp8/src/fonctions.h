@@ -15,6 +15,17 @@
 #include <string.h>
 #include <ctype.h>
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-17
+ * 
+ * @brief 
+ * 
+ * @param chaine 
+ * @return long 
+ */
 long verifConversion(char* chaine);
 
 

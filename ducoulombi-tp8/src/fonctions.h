@@ -14,9 +14,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 /**
- * 
+ * @fn long verifConversion(char* chaine)
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-12-17

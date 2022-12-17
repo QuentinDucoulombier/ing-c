@@ -22,10 +22,10 @@ PROG := exe											#L'executable
 all: $(PROG)
 
 $(PROG) : $(OBJ)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ -lm
 
 $(BINDIR)%.o : $(SRCDIR)%.c 
-	$(CC) -c $^ -o $@
+	$(CC) -c $^ -o $@ -lm
 
 .PHONY : clean save	doc							#Effectue les commande meme si un fichier du meme nom existe
 

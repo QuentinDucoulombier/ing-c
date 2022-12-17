@@ -11,37 +11,6 @@
 #include "codeCesar.h"
 #include "fonctions.h"
 
-/*char* codeCesar(char* str)
-{
-    return void;
-}*/
-
-/*
-void codeCesar(long taille, char* chaine, char chaineSortie[strlen(chaine)])
-{
-    long j = 0; 
-    int k = 0;
-    //cas ou l'encrement est superieur a 26
-    if(taille > 26)
-    {
-        //on fait le modulo
-        taille = taille % 26;
-    }
-
-    for (int i = 0; i < strlen(chaine); i++)
-    {
-        j = 0;
-        while (toupper(chaine[i]) != STR[j])
-        {
-            j++;
-        }
-        chaineSortie[k] = STR[j + taille];
-        k++;
-    }
-    printf("chaine final fonction: %s\n", chaineSortie);
-}
-*/
-
 int verifAlphabet(int codeAscii)
 {
     /*Cas de l'alphabet en majuscule*/
@@ -146,3 +115,47 @@ char* codeDeVigenere(char* str, char* key)
     return(strCrypte);
 }
 
+char* codeDeScytale(char* message) 
+{
+    int longueur = strlen(message);
+    char* strCrypte = malloc(longueur + 1);
+    int dimension = ceil(sqrt(longueur));
+    char grille[dimension][dimension];
+
+    /*Initialisation avec des . (oui des points parce qu'on va quand meme pas encrypté des points ca n'a pas de sens)*/
+    for (int i = 0; i < dimension; i++)
+    {
+        for (int j = 0; j < dimension; j++) 
+        {
+            grille[i][j] = '.';
+        }
+    }
+
+    /*On remplit la grille avec le message*/
+    int cpt = 0;
+    for (int i = 0; i < dimension; i++) 
+    {
+        for (int j = 0; j < dimension; j++) 
+        {
+            if (cpt < longueur) 
+            {
+                grille[i][j] = message[cpt++];
+            }
+        }
+    }
+
+    /*On ecrit le message encrypté dans le nouveau string*/
+    cpt = 0;
+    for (int j = 0; j < dimension; j++) 
+    {
+        for (int i = 0; i < dimension; i++) 
+        {
+            if (grille[i][j] != '.') 
+            {
+                strCrypte[cpt++] = grille[i][j];
+            }
+        }
+    }
+    strCrypte[cpt] = '\0';
+    return strCrypte;
+}

@@ -11,7 +11,7 @@
 #include "codeCesar.h"
 
 /**
- * 
+ * @fn int main(int argc, char *argv[])
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-12-17
@@ -24,7 +24,7 @@
  */
 int main(int argc, char *argv[])
 {
-    if(argc != 7)
+    if((argc != 7) && ((strcmp(argv[2],"scytale") != 0)))
     {
         fprintf(stderr, "Il manque %d arguments\n", 7 - argc);
         exit(EXIT_FAILURE);
@@ -45,7 +45,11 @@ int main(int argc, char *argv[])
             printf("Chaine intial: %s\n", argv[6]);
             printf("Chaine final: %s\n", codeDeVigenere(argv[6], argv[4]));
         }
+        else if (strcmp(argv[2],"scytale") == 0)
+        {
+            printf("Chaine intial: %s\n", argv[4]);
+            printf("Chaine final: %s\n", codeDeScytale(argv[4]));
+        }
     }
-
     return(0);
 } 

@@ -44,6 +44,8 @@ int main(int argc, char *argv[])
     donneCarte(&p, croupier);*/
     croupier -> carte = NULL;
     joueur -> carte = NULL;
+    joueur -> somme = 0;
+    croupier -> somme = 0;
     tourDeJeu(croupier, joueur, p);
     
     return (0);

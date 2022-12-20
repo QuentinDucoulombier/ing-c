@@ -244,20 +244,21 @@ int verifJeu(joueur* joueur, int etat)
 {
     joueur->somme += joueur->carte->valeur;
     printf("Somme %d\n", joueur->somme);
-    if(!etat)
+    if(!etat) //etat == 0
     {
         if (joueur->somme > 21)
         {
             /*TODO*/
             /*transformer As de 11 en 1*/
-            return 1;
+            return 0;
         }
         else
         {
-            return 0;
+            return 1;
         }
     }
-    return 1;
+    printf("out fonction \n");
+    return 0;
     
 }
 
@@ -267,7 +268,9 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     int out;
     int etat = 0;
     donneCarte(&p, joueur);
+    joueur->somme += joueur->carte->valeur;
     donneCarte(&p, croupier);
+    croupier->somme += croupier->carte->valeur;
     donneCarte(&p, joueur);
     donneCarte(&p, croupier);
     printf("Carte du joueur\n");
@@ -278,18 +281,20 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
 
     //AfficherP(croupier->carte);
     
-   /*
-    while (verifJeu(joueur, etat))
+    while(verifJeu(joueur, etat))
     {
         printf("0.Distribuer\n");
         printf("1.Rester\n");
-        scanf("%d", &out);
-        if(out)
+        scanf("%d", &out); //rajouter le entrée entier et limité que a 0 et 1
+        if(!out) //out == 1
         {
             donneCarte(&p, joueur);
+            etat = 0;
         }
-
+        else
+        {
+            etat = 1;
+        }
     }
-    printf("\nout\n");*/
-    
+    //AfficherP(p);
 }

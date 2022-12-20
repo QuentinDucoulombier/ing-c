@@ -34,6 +34,11 @@ void initialiserPaquet(paquet *p)
                 {
                     c->valeur = 10;
                 }
+                else if (c->chiffre == AS)
+                {
+                    c->valeur = 11;
+                }
+                
                 else
                 {
                     c->valeur = (int) chiffres[i];
@@ -243,7 +248,8 @@ int verifJeu(joueur* joueur, int etat)
     {
         if (joueur->somme > 21)
         {
-            /*transformer 1 en 11*/
+            /*TODO*/
+            /*transformer As de 11 en 1*/
             return 1;
         }
         else

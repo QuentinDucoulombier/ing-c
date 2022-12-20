@@ -71,11 +71,28 @@ void ajouterPos(paquet* l, int valeur, chiffreCarte chiffreC, eCouleur coul, int
     temp -> suivant = m;
 }
 
+void AjouterDebut(paquet* l, carte element)
+{
+    carte* m;
 
-void SupprimerDebut(paquet* l)
+    m = malloc(sizeof(carte));
+    m -> chiffre = element.chiffre;
+    m -> couleur = element.couleur;
+    m -> valeur = element.valeur;
+    m -> suivant = (*l);
+    (*l) = m;
+
+}
+
+carte supprimerDebut(paquet* l)
 {
     paquet temp = (*l);
+    carte eltsuppr;
+    eltsuppr.chiffre = temp -> chiffre;
+    eltsuppr.couleur = temp -> couleur;
+    eltsuppr.valeur = temp -> valeur;
     (*l) = temp -> suivant;
+    return eltsuppr;
 }
 
 void Compter (paquet p)
@@ -104,7 +121,7 @@ void melangerPaquet(paquet *p)
     for (int i = 0; i < 52; i++)
     {
         int pos = rand() % 52; 
-        SupprimerDebut(p);
+        supprimerDebut(p);
         int valeur = (*p) ->valeur;
         chiffreCarte chiffre = (*p)->chiffre;
         eCouleur couleur = (*p)->couleur;
@@ -129,7 +146,7 @@ void AfficherP(paquet p)
             switch (temp->couleur)
             {
             case 0:
-                printf("%d couleur: carreau, chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
+                printf("%d couleur: carreau et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
                 carreau++;
                 break; 
             case 1:
@@ -183,13 +200,14 @@ void SupprimerFin(paquet* l)
 
 void donneCarte(paquet *p, joueur* joueur)
 {
-    joueur -> carte = *p;
-    while (joueur -> carte -> suivant != NULL)
+    
+    AjouterDebut(&(joueur -> carte), supprimerDebut(p));
+    /*while (joueur -> carte -> suivant != NULL)
     {
         SupprimerFin(&joueur->carte);
     }
     
-    SupprimerDebut(p);
+    SupprimerDebut(p);*/
 }
 
 
@@ -232,7 +250,7 @@ int verifJeu(joueur* joueur, int etat)
     {
         if (joueur->somme > 21)
         {
-            /*transformer 1 en 21*/
+            /*transformer 1 en 11*/
             return 1;
         }
         else
@@ -253,7 +271,11 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     donneCarte(&p, croupier);
     donneCarte(&p, joueur);
     donneCarte(&p, croupier);
+    printf("Carte du joueur\n");
     AfficherP(joueur->carte);
+    printf("Carte du croupier\n");
+    AfficherP(croupier->carte);
+    //AfficherP(p);
 
     //AfficherP(croupier->carte);
     

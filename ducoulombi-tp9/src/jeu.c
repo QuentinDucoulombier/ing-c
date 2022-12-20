@@ -177,7 +177,7 @@ void AfficherP(paquet p)
     
 }
 
-/*verifier ces fonctions*/
+/*Pas utile
 void SupprimerFin(paquet* l)
 {
     paquet temp = (*l);
@@ -196,18 +196,11 @@ void SupprimerFin(paquet* l)
     {
         temp = NULL;
     }
-}
+}*/
 
 void donneCarte(paquet *p, joueur* joueur)
 {
-    
     AjouterDebut(&(joueur -> carte), supprimerDebut(p));
-    /*while (joueur -> carte -> suivant != NULL)
-    {
-        SupprimerFin(&joueur->carte);
-    }
-    
-    SupprimerDebut(p);*/
 }
 
 

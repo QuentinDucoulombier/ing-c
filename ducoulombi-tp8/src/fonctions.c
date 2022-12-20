@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-06
  * 
- * @brief 
+ * @brief fichier pour les fonctions
  * 
  */
 
@@ -15,7 +15,9 @@
 long verifConversion(char* chaine)
 {
     char* endPtr;
+    /*Convertit la chaine en long*/
     long taille = strtol(chaine, &endPtr, 10);
+    /*Verifie le format*/
     if(endPtr == chaine)
     {
         fprintf(stderr, "Mauvais format: %s -- Valeur %ld\n", endPtr, taille);
@@ -25,4 +27,12 @@ long verifConversion(char* chaine)
     {
         return(taille);
     }
+}
+
+
+void liberer(char* str)
+{
+
+    free(str);
+    str = NULL;
 }

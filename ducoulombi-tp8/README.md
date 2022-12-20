@@ -1,4 +1,4 @@
-# 
+# TP8 - Chaine de caractere
  
 ---
 
@@ -13,7 +13,7 @@ Email: ducoulombi@cy-tech.fr
 ### Pour compiler il suffit de se mettre dans le répertoire courant du dossier ducoulombi-tp7.b
 
 > make  
-> ./exe
+> ./exe (avec la liste des arguments -> voir ./exe -h help)
 
 ### Pour nettoyer les fichiers:
 

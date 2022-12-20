@@ -1,16 +1,27 @@
 /**
- * @file codeCesar.c
+ * @file codage.c
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
- * @date 2022-12-06
+ * @date 2022-12-20
  * 
- * @brief 
+ * @brief fichier avec l'ensemble de fonction pour encrypté les chaine de caractere
  * 
  */
 
-#include "codeCesar.h"
+#include "codage.h"
 #include "fonctions.h"
 
+/**
+ * @fn int verifAlphabet(int codeAscii)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-20
+ * 
+ * @brief fonction utilisé localement dans le fichier codage.c pour verifier si le codeAscii correspond a l'alphabet en majuscule ou en minuscule
+ * 
+ * @param codeAscii 
+ * @return 1(vrai) si alphabet en majuscule, 2(vrai) alphabet en minuscule, 0(faux) si ca n'appartient pas a l'alphabet
+ */
 int verifAlphabet(int codeAscii)
 {
     /*Cas de l'alphabet en majuscule*/
@@ -35,14 +46,16 @@ char *codeCesar(char *str, int decalage)
 {
     if(decalage > 26)
     {
-        //on fait le modulo
+        //on fait le modulo pour le decalage
         decalage = decalage % 26;
     }
+    /*On initialise la chaine de caractere a la taille de la chaine d'entrée + 1*/
     char *strCrypte = malloc(strlen(str) + 1);
     int i;
-    for (i = 0; i < strlen(str); i++) {
+    for (i = 0; i < strlen(str); i++) 
+    {
         int codeAscii = str[i];
-       
+        /*Cas majuscule*/
         if (verifAlphabet(codeAscii) == 1)
         {
             codeAscii += decalage;
@@ -51,6 +64,7 @@ char *codeCesar(char *str, int decalage)
                 codeAscii -= 26;
             }
         }
+        /*Cas minuscule*/
         else if (verifAlphabet(codeAscii) == 2)
         {
             codeAscii += decalage;
@@ -59,9 +73,10 @@ char *codeCesar(char *str, int decalage)
                 codeAscii -= 26;
             }
         }
-        
+        /*Cas autre caractere*/
         strCrypte[i] = codeAscii;
     }
+    /*On rajoute a la fin \0*/
     strCrypte[i] = '\0';
     return(strCrypte);
 }
@@ -119,6 +134,7 @@ char* codeDeScytale(char* message)
 {
     int longueur = strlen(message);
     char* strCrypte = malloc(longueur + 1);
+    /*On calcul la dimension par rapport a la partie entiere de la racine de la longueur*/
     int dimension = ceil(sqrt(longueur));
     char grille[dimension][dimension];
 

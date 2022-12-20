@@ -4,12 +4,13 @@
  * @version 0.1
  * @date 2022-12-06
  * 
- * @brief 
+ * @brief ensemble des appels de fonctions des fichiers de fonction
  * 
  */
 #ifndef __fonctions_h_
 #define __fonctions_h_
 
+/*Toutes les bibliotheques necessaire*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,12 +23,23 @@
  * @version 0.1
  * @date 2022-12-17
  * 
- * @brief 
+ * @brief permet de verifier si la conversion est bien passé
  * 
  * @param chaine 
- * @return long 
+ * @return une erreur si la conversion ne marche pas, sinon la conversion 
  */
 long verifConversion(char* chaine);
 
+/**
+ * @fn void liberer(char* str)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-20
+ * 
+ * @brief fonction pour liberer la chaine de caractere
+ * 
+ * @param str 
+ */
+void liberer(char* str);
 
 #endif

@@ -1,15 +1,15 @@
 /**
- * @file codeCesar.h
+ * @file codage.h
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
- * @date 2022-12-17
+ * @date 2022-12-20
  * 
- * @brief 
+ * @brief ensemble des fonctions pour encoder des chaine de caractere
  * 
  */
 
-#ifndef __codeCesar_h_
-#define __codeCesar_h_
+#ifndef __codage_h_
+#define __codage_h_
 
 
 /**
@@ -18,11 +18,11 @@
  * @version 0.1
  * @date 2022-12-17
  * 
- * @brief 
+ * @brief fonction pour encrypté selon le code cesar
  * 
  * @param str 
  * @param decalage 
- * @return char* 
+ * @return la chaine encrypté
  */
 char *codeCesar(char *str, int decalage);
 
@@ -32,11 +32,11 @@ char *codeCesar(char *str, int decalage);
  * @version 0.1
  * @date 2022-12-17
  * 
- * @brief 
+ * @brief fonction pour encrypté selon le code de vigenere
  * 
  * @param str 
  * @param key 
- * @return char* 
+ * @return la chaine encrypté
  */
 char* codeDeVigenere(char* str, char* key);
 
@@ -44,10 +44,12 @@ char* codeDeVigenere(char* str, char* key);
  * @fn char* codeDeScytale(char* message)
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
- * @date 2022-12-17
+ * @date 2022-12-20
  * 
- * @brief 
+ * @brief fonction pour encrypté selon le codage de scytale
  * 
+ * @param message 
+ * @return la chaine encrypté
  */
 char* codeDeScytale(char* message);
 

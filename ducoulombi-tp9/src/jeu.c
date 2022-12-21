@@ -22,7 +22,7 @@ void initialiserPaquet(paquet *p)
     // de chiffre et de couleur
     int test = 1;
     /*for (int i = 0; i < 3; i++)*///Pour test les as
-    for (int i = 0; i < 13; i++)
+    for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
         {
@@ -210,11 +210,8 @@ void donneCarte(paquet *p, joueur* joueur)
     AjouterDebut(&(joueur -> carte), supprimerDebut(p));
     if(joueur->carte->chiffre == AS)
     {
-        joueur->as = TRUE;
-    }
-    else
-    {
-        joueur->as = FALSE;
+        joueur->as ++;
+        printf("as -> %d\n", joueur->as);
     }
     
 }
@@ -257,16 +254,19 @@ int verifJeu(joueur* joueur, int etat)
     if(!etat) //etat == 0
     {
         joueur->somme += joueur->carte->valeur;
-        printf("Somme %d\n", joueur->somme);
+        printf("Somme ici %d\n", joueur->somme);
         if (joueur->somme > 21)
         {
             /*TODO*/
             /*transformer As de 11 en 1*/
-            if(joueur->as == TRUE)
+            if(joueur->as)
             {
                 printf("Vous avez un as donc la somme devient\n");//Faire le cas ou ca tombe sur 21 et le cas ou il y a 2 as
                 joueur->somme -= 10;
-                printf("Somme %d\n", joueur->somme);
+                printf("as -> %d\n", joueur->as);
+                joueur->as --; //Debug ou regarder avec true et false (ctrl z)
+                printf("as -> %d\n", joueur->as);
+                printf("Somme la %d\n", joueur->somme);
                 return TRUE;
             }
             else
@@ -291,6 +291,8 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
 {
     int out;
     int etat = 0;
+    joueur -> as = FALSE;
+    croupier -> as = FALSE;
     donneCarte(&p, joueur);
     joueur->somme += joueur->carte->valeur;
     donneCarte(&p, croupier);
@@ -305,6 +307,7 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
 
     //AfficherP(croupier->carte);
     /*Joueur 1*/
+    printf("Au tour du joueur\n");
     while(verifJeu(joueur, etat))
     {
         printf("0.Distribuer\n");
@@ -320,6 +323,7 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
             etat = 1;
         }
     }
+    printf("Au tour du croupier\n");
     /*Croupier*/
     if(joueur -> etat == TRUE)
     {

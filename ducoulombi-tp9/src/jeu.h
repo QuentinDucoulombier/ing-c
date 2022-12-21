@@ -10,6 +10,9 @@
 #ifndef __jeu_h_
 #define __jeu_h_
 
+#define TRUE 1
+#define FALSE 0
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -55,6 +58,8 @@ typedef struct joueur
     int argent;
     paquet carte;
     int somme;
+    int etat;
+    int as;
     char nom[30];
     char prenom[30];
 }joueur;

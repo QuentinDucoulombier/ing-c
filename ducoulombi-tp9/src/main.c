@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     joueur* croupier = &joueur1;
     joueur joueur2;
     joueur* joueur = &joueur2;
-    creationJoueur(croupier, joueur);
+    
     /*donneCarte(&p, joueur);
     //printf("nom %s\nprenom %s\nargent %d\ncarte: couleur %d, chiffre %d, valeur: %d\n", croupier->nom, croupier->prenom, croupier->argent, croupier->carte->couleur, croupier->carte->chiffre, croupier->carte->valeur);
     //AfficherP(p);
@@ -41,14 +41,14 @@ int main(int argc, char *argv[])
     //printf("nom %s\nprenom %s\nargent %d\ncarte: couleur %d, chiffre %d, valeur: %d\n", joueur->nom, joueur->prenom, joueur->argent, joueur->carte->couleur, joueur->carte->chiffre, joueur->carte->valeur);
     //AfficherP(p);
     donneCarte(&p, joueur);
-    donneCarte(&p, croupier);*/
+    donneCarte(&p, croupier);
     croupier -> carte = NULL;
     joueur -> carte = NULL;
     joueur -> somme = 0;
     croupier -> somme = 0;
     joueur -> etat = TRUE;
-    croupier -> etat = TRUE;
-    tourDeJeu(croupier, joueur, p);
+    croupier -> etat = TRUE;*/
+    debutDuJeu(croupier, joueur, p);
     
     return (0);
 }

@@ -56,6 +56,8 @@ typedef carte* paquet;
 typedef struct joueur
 {
     int argent;
+    int mise;
+    int blackjack;
     paquet carte;
     int somme;
     int etat;
@@ -185,8 +187,25 @@ int verifJeu(joueur* joueur, int etat);
  * 
  * @brief 
  * 
+ * @param croupier 
+ * @param joueur 
+ * @param p 
  */
 void tourDeJeu(joueur* croupier, joueur* joueur, paquet p);
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-22
+ * 
+ * @brief 
+ * 
+ * @param croupier 
+ * @param joueur 
+ * @param p 
+ */
+void debutDuJeu(joueur* croupier, joueur* joueur, paquet p);
 
 
 #endif

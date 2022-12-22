@@ -3,6 +3,9 @@
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-12-09
+ * TODO:
+ *  - Verifier si le blackjack marche
+ *  - Ne pas melanger mettre juste a la fin de la liste
  * 
  * @brief 
  * @todo debug la fonction melanger
@@ -22,7 +25,7 @@ void initialiserPaquet(paquet *p)
     // de chiffre et de couleur
     int test = 1;
     /*for (int i = 0; i < 3; i++)*///Pour test les as
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 13; i++)
     {
         for (int j = 0; j < 4; j++)
         {
@@ -135,6 +138,32 @@ void melangerPaquet(paquet *p)
     }
 }
 
+void afficheCarte(int couleur, int chiffre, int valeur)
+{
+    switch (couleur)
+    {
+    case 0:
+        /*Regarder ascii art https://ascii.co.uk/art/cards*/
+        printf("couleur: carreau et chiffre:%d, valeur %d\n",chiffre, valeur);
+        //carreau++;
+        break; 
+    case 1:
+        printf("couleur: coeur et chiffre:%d, valeur %d\n",chiffre, valeur);
+        //coeur++;
+        break;
+    case 2:
+        printf("couleur: trefle et chiffre:%d, valeur %d\n",chiffre, valeur);
+        //trefle++;
+        break;
+    case 3:
+        printf("couleur: pique et chiffre:%d, valeur %d\n",chiffre, valeur);
+        //pique++;
+        break;
+    default:
+        printf("Couleur inconnue\n");
+        break;
+    }
+}
 
 void AfficherP(paquet p)
 {
@@ -142,40 +171,19 @@ void AfficherP(paquet p)
     {
         paquet temp = p;
         int i = 1;
-        int carreau = 0;
+        /*int carreau = 0;
         int coeur = 0;
         int trefle = 0;
-        int pique = 0;
+        int pique = 0;*/
         while (temp != NULL)
         {
             //printf("couleur: %d et chiffre:%d\n", temp->couleur, temp->chiffre);
-            switch (temp->couleur)
-            {
-            case 0:
-                /*Regarder ascii art https://ascii.co.uk/art/cards*/
-                printf("%d couleur: carreau et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
-                carreau++;
-                break; 
-            case 1:
-                printf("%d couleur: coeur et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
-                coeur++;
-                break;
-            case 2:
-                printf("%d couleur: trefle et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
-                trefle++;
-                break;
-            case 3:
-                printf("%d couleur: pique et chiffre:%d, valeur %d\n",i, temp->chiffre, temp->valeur);
-                pique++;
-                break;
-            default:
-                printf("Couleur inconnue\n");
-                break;
-            }
-            temp = temp -> suivant;
+            printf("%d: ", i);
+            afficheCarte(temp->couleur, temp->chiffre, temp->valeur);
             i++;
+            temp = temp -> suivant;
         }
-        printf("carr %d, coeur %d, trefle %d, pique %d\n", carreau, coeur, trefle, pique);
+        //printf("carr %d, coeur %d, trefle %d, pique %d\n", carreau, coeur, trefle, pique);
     }
     else
     {
@@ -183,6 +191,7 @@ void AfficherP(paquet p)
     }
     
 }
+
 
 /*Pas utile
 void SupprimerFin(paquet* l)
@@ -208,10 +217,13 @@ void SupprimerFin(paquet* l)
 void donneCarte(paquet *p, joueur* joueur)
 {
     AjouterDebut(&(joueur -> carte), supprimerDebut(p));
+    //printf("\nCarte %d\n", joueur->carte->chiffre);
+    //afficheCarte(joueur->carte->couleur, joueur->carte->chiffre, joueur->carte->valeur);
+    /*Compte le nombre d'as dans le paquet du joueur*/
     if(joueur->carte->chiffre == AS)
     {
         joueur->as ++;
-        printf("as -> %d\n", joueur->as);
+        //printf("as -> %d\n", joueur->as);
     }
     
 }
@@ -237,7 +249,7 @@ void creationJoueur(joueur* croupier, joueur* vraiJoueur)
     /*Initialisation du croupier*/
     strcpy(croupier->nom, "croupier");
     strcpy(croupier->prenom, "michel");
-    croupier->argent = -1; //bank
+    croupier->argent = -1; //bank ilimité
     /*Initialisation du joueur*/
     printf("\nVeuillez saisir votre nom: ");
     scanf("%s", vraiJoueur->nom);
@@ -257,14 +269,15 @@ int verifJeu(joueur* joueur, int etat)
         printf("Somme ici %d\n", joueur->somme);
         if (joueur->somme > 21)
         {
-            /*TODO*/
-            /*transformer As de 11 en 1*/
+            
+            /*transforme As avec une valeur de 11 en 1*/
+            /*Joueur->as compte le nombre d'as dans le paquet de carte du joueur si >0 => VRAI sinon si 0 => FAUX*/
             if(joueur->as)
             {
                 printf("Vous avez un as donc la somme devient\n");//Faire le cas ou ca tombe sur 21 et le cas ou il y a 2 as
                 joueur->somme -= 10;
                 printf("as -> %d\n", joueur->as);
-                joueur->as --; //Debug ou regarder avec true et false (ctrl z)
+                joueur->as --; //Normalement ca marche
                 printf("as -> %d\n", joueur->as);
                 printf("Somme la %d\n", joueur->somme);
                 return TRUE;
@@ -296,43 +309,50 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     donneCarte(&p, joueur);
     joueur->somme += joueur->carte->valeur;
     donneCarte(&p, croupier);
+    /*Premiere carte du croupier*/
+    printf("Premiere carte du croupier\n");
+    AfficherP(croupier->carte);
     croupier->somme += croupier->carte->valeur;
     donneCarte(&p, joueur);
     donneCarte(&p, croupier);
     printf("Carte du joueur\n");
     AfficherP(joueur->carte);
-    printf("Carte du croupier\n");
-    AfficherP(croupier->carte);
-    //AfficherP(p);
-
+    /*Ne pas afficher les cartes du croupier*/
+    //printf("Carte du croupier\n");
     //AfficherP(croupier->carte);
-    /*Joueur 1*/
+    //AfficherP(p);
     printf("Au tour du joueur\n");
-    while(verifJeu(joueur, etat))
+
+    
+    /*Verifie le cas du blackjack*/
+    if(joueur->blackjack && !croupier->blackjack)
     {
-        printf("0.Distribuer\n");
-        printf("1.Rester\n");
-        scanf("%d", &out); //rajouter le entrée entier et limité que a 0 et 1
-        if(!out) //out == 1
-        {
-            donneCarte(&p, joueur);
-            etat = 0;
-        }
-        else
-        {
-            etat = 1;
-        }
+        joueur->argent += joueur->mise;
+        printf("Le joueur gagne\n");
     }
-    printf("Au tour du croupier\n");
-    /*Croupier*/
-    if(joueur -> etat == TRUE)
+    else if (croupier->blackjack && !joueur->blackjack)
     {
-        etat = 0;
-        while(verifJeu(croupier, etat))
+        joueur->argent -= joueur->mise;
+        printf("Le croupier gagne\n");
+    }
+    else if (croupier->blackjack && joueur->blackjack)
+    {
+        printf("egalité");
+    }
+    /*Tous les autres cas*/
+    else
+    {
+        /*Joueur 1*/
+        while(verifJeu(joueur, etat))
         {
-            if(croupier -> somme <= 16)
+            printf("0.Distribuer\n");
+            printf("1.Rester\n");
+            scanf("%d", &out); //rajouter le entrée entier et limité que a 0 et 1
+            if(!out) //out == 1
             {
-                donneCarte(&p, croupier);
+                donneCarte(&p, joueur);
+                printf("Carte du joueur\n");
+                AfficherP(joueur->carte);
                 etat = 0;
             }
             else
@@ -340,20 +360,114 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
                 etat = 1;
             }
         }
-    }
+        printf("Au tour du croupier\n");
+        printf("Carte du croupier\n");
+        AfficherP(croupier->carte);
+        /*Croupier*/
+        if(joueur -> etat == TRUE)
+        {
+            etat = 0;
+            while(verifJeu(croupier, etat))
+            {
+                if(croupier -> somme <= 16)
+                {
+                    donneCarte(&p, croupier);
+                    printf("Carte du croupier\n");
+                    AfficherP(croupier->carte);
+                    etat = 0;
+                }
+                else
+                {
+                    etat = 1;
+                }
+            }
+        }
 
-    if((croupier -> somme > joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == FALSE && croupier -> etat == TRUE))//croupier -> etat == TRUE
-    {
-        printf("Le croupier gagne\n");
-    }
-    else if ((croupier -> somme < joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == TRUE && croupier -> etat == FALSE))
-    {
-        printf("Le joueur gagne\n");
-    }
-    else
-    {
-        printf("Egalité\n");
+        if((croupier -> somme > joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == FALSE && croupier -> etat == TRUE))//croupier -> etat == TRUE
+        {
+            joueur->argent -= joueur->mise;
+            printf("Le croupier gagne\n");
+        }
+        else if ((croupier -> somme < joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == TRUE && croupier -> etat == FALSE))
+        {
+            joueur->argent += joueur->mise;
+            printf("Le joueur gagne\n");
+        }
+        else
+        {
+            printf("Egalité\n");
+        }
     }
     
     //AfficherP(p);
+}
+
+void saisieArgent(joueur* joueur)
+{
+    do
+    {
+        printf("Vous avez %d argents\n", joueur->argent);
+        printf("Quelle est votre mise pour cette partie: ");
+        joueur->mise = saisieEntier();
+        printf("\n");
+        if(joueur->mise > joueur->argent)
+        {
+            printf("Erreur vous avez misez plus que votre argent\n");
+        }
+
+    } while (joueur->mise > joueur->argent);
+}
+
+void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
+{
+    creationJoueur(croupier, joueur);
+    croupier -> carte = NULL;
+    joueur -> carte = NULL;
+    joueur -> somme = 0;
+    croupier -> somme = 0;
+    joueur -> etat = TRUE;
+    croupier -> etat = TRUE;
+    joueur -> mise = 0;
+    croupier -> mise = -1; 
+    /*Gerer blackJack*/
+    joueur -> blackjack = FALSE;
+    croupier -> blackjack = FALSE;
+    if(joueur->somme == 21)
+    {
+        printf("Felicitation vous avez fait blackjack\n");
+        joueur -> blackjack = TRUE;
+    }
+    if(croupier->somme == 21)
+    {
+        printf("Le croupier a fait blackjack\n");
+        joueur -> blackjack = TRUE;
+    }
+    saisieArgent(joueur);
+    tourDeJeu(croupier, joueur, p);
+    int resultat = 1;    
+    printf("Voulez vous rejouez ?\n");
+    printf("1- Non\n");
+    printf("2- Oui\n");
+    resultat = saisieEntier() - 1;
+    while (resultat)
+    {
+        /*refaire le menu*/
+        /*ne pas melanger mettre juste a la fin de la liste*/
+        melangerPaquet(&p);
+        joueur -> somme = 0;
+        croupier -> somme = 0;
+        croupier -> carte = NULL;
+        joueur -> carte = NULL;
+        joueur -> etat = TRUE;
+        croupier -> etat = TRUE;
+        joueur -> mise = 0;
+        croupier -> mise = -1; 
+        saisieArgent(joueur);
+        tourDeJeu(croupier, joueur, p);
+        printf("Voulez vous rejouez ?\n");
+        printf("1- Non\n");
+        printf("2- Oui\n");
+        resultat = saisieEntier() - 1;
+    }
+    printf("Merci d'avoir joué :), vous repartez avec %d €\n", joueur->argent);
 }

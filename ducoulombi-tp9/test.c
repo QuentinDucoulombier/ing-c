@@ -73,6 +73,7 @@ void afficher_carte(carte_t carte) {
       break;
     case DAME:
       printf("|Q       Q|\n");
+      printf("|         |\n");
       break;
     case ROI:
       printf("|K       K|\n");
@@ -107,6 +108,43 @@ int main() {
 
     // On affiche la carte
     afficher_carte(carte);
-
+    /*    case 11:
+        switch (couleur)
+        {
+            case 0:
+                printf("\n┌─────────┐\n|   J     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     J   |\n└─────────┘", "♦", "♦", "♦");
+                break;
+                    case 1:
+                printf("\n┌─────────┐\n|   J     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     J   |\n└─────────┘", "♥", "♥", "♥");
+                break;
+            case 2:
+                printf("\n┌─────────┐\n|   J     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     J   |\n└─────────┘", "♣", "♣", "♣");
+                break;
+            case 3:
+                printf("\n┌─────────┐\n|   J     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     J   |\n└─────────┘", "♠", "♠", "♠");
+            default:
+                printf("erreur");
+            break;
+        }
+        break;
+    case 12:
+        switch (couleur)
+        {
+            case 0:
+                printf("\n┌─────────┐\n|   Q     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     Q   |\n└─────────┘", "♦", "♦", "♦");
+                break;
+            case 1:
+                printf("\n┌─────────┐\n|   Q     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     Q   |\n└─────────┘", "♥", "♥", "♥");
+                break;
+            case 2:
+                printf("\n┌─────────┐\n|   Q     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     Q   |\n└─────────┘", "♣", "♣", "♣");
+                break;
+            case 3:
+                printf("\n┌─────────┐\n|   Q     |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|     Q   |\n└─────────┘", "♠", "♠", "♠");
+            default:
+                printf("erreur");
+                break;
+        }
+        break;*/
     return 0;
 }

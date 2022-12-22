@@ -6,6 +6,7 @@
  * TODO:
  *  - Verifier si le blackjack marche
  *  - Ne pas melanger mettre juste a la fin de la liste
+ *  - Modifier le truc de blackjack ligne 570
  * 
  * @brief 
  * @todo debug la fonction melanger
@@ -115,6 +116,7 @@ void Compter (paquet p)
         while (temp != NULL)
         {
             res++;
+            //printf("\n"); test a faire
             temp = temp -> suivant;
         }
     }
@@ -140,29 +142,274 @@ void melangerPaquet(paquet *p)
 
 void afficheCarte(int couleur, int chiffre, int valeur)
 {
-    switch (couleur)
+    /*Ascii art pour valets, rennes et rois https://ascii.co.uk/art/cards*/
+    switch (chiffre)
     {
-    case 0:
-        /*Regarder ascii art https://ascii.co.uk/art/cards*/
-        printf("couleur: carreau et chiffre:%d, valeur %d\n",chiffre, valeur);
-        //carreau++;
-        break; 
     case 1:
-        printf("couleur: coeur et chiffre:%d, valeur %d\n",chiffre, valeur);
-        //coeur++;
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|         |\n|    %s    |\n|         |\n|         |\n|        %d|\n└─────────┘", chiffre, "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|         |\n|    %s    |\n|         |\n|         |\n|        %d|\n└─────────┘", chiffre, "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|         |\n|    %s    |\n|         |\n|         |\n|        %d|\n└─────────┘", chiffre, "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|         |\n|    %s    |\n|         |\n|         |\n|        %d|\n└─────────┘", chiffre, "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
         break;
     case 2:
-        printf("couleur: trefle et chiffre:%d, valeur %d\n",chiffre, valeur);
-        //trefle++;
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|        %d|\n└─────────┘", chiffre, "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|        %d|\n└─────────┘", chiffre, "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|        %d|\n└─────────┘", chiffre, "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|        %d|\n└─────────┘", chiffre, "♠",  "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
         break;
     case 3:
-        printf("couleur: pique et chiffre:%d, valeur %d\n",chiffre, valeur);
-        //pique++;
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|    %s    |\n|         |\n|    %s    |\n|         |\n|    %s    |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
         break;
+    case 4:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|         |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|         |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|         |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|         |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break;
+    case 5:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|    %s    |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|    %s    |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|    %s    |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|    %s    |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break;
+    case 6:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break;
+    case 7:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break; 
+    case 8:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d        |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|        %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break; 
+    case 9:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s %d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s %d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s %d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s %d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break; 
+    case 10:
+        switch (couleur)
+        {
+        case 0:
+            printf("\n┌─────────┐\n|%d%s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s%d|\n└─────────┘", chiffre, "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦", "♦",chiffre);
+            break;
+        case 1:
+            printf("\n┌─────────┐\n|%d%s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s%d|\n└─────────┘", chiffre, "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥", "♥",chiffre);
+            break;
+        case 2:
+            printf("\n┌─────────┐\n|%d%s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s%d|\n└─────────┘", chiffre, "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣", "♣",chiffre);
+            break;
+        case 3:
+            printf("\n┌─────────┐\n|%d%s   %s  |\n|    %s    |\n|  %s   %s  |\n|         |\n|  %s   %s  |\n|    %s    |\n|  %s   %s%d|\n└─────────┘", chiffre, "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠", "♠",chiffre);
+            break;
+        default:
+            printf("erreur");
+            break;
+        }
+        break; 
+    case 11:
+        switch (couleur)
+            {
+            case 0:
+                printf("\n┌─────────┐\n|V /~~|_  |\n|♦ ( o\\   |\n|  ! \\l   |\n| ^^^Xvvv |\n|   l\\ I  |\n|   \\o ) ♦|\n|  ~|__/ V|\n└─────────┘");
+                break;
+            case 1:
+                printf("\n┌─────────┐\n|V /~~|_  |\n|♥ %% *`.  |\n|  %% <~   |\n| %%%% / %%%% |\n|   _> %%  |\n|  `,* %% ♥|\n|  ~|__/ V|\n└─────────┘");
+                break;
+            case 2:
+                printf("\n┌─────────┐\n|V /~~|_  |\n|♣ ! -\\   |\n|  \\ -!   |\n|  ',\\\',  |\n|   I- \\  |\n|   \\- I ♣|\n|  ~|__/ V|\n└─────────┘");
+                break;
+            case 3:
+                printf("\n┌─────────┐\n|V /~~|_  |\n|♠ | o`,  |\n|  | -|   |\n| =~)+(_= |\n|   |- |  |\n|  `.o | ♠|\n|  ~|__/ V|\n└─────────┘");
+                break;
+            default:
+                printf("erreur");
+                break;
+            }
+            break;
+    case 12:
+        switch (couleur)
+            {
+            case 0:
+                printf("\n┌─────────┐\n|D |~~~|  |\n|♦ |o.o|  |\n|   \\v/   |\n|  XXOXX  |\n|   /^\\   |\n|  |o'o| ♦|\n|  |___| D|\n└─────────┘");
+                break;
+            case 1:
+                printf("\n┌─────────┐\n|D |~~~|  |\n|♥ %%*,*%%  |\n|  \\_o_/  |\n|  /~o~\\  |\n|  %%*'*%%  |\n|  |o'o| ♥|\n|  |___| D|\n└─────────┘");
+                break;
+            case 2:
+                printf("\n┌─────────┐\n|D |~~~|  |\n|♣ \\- -/  |\n| o |-|   |\n|  I %% I  |\n|   |-| o |\n|  /- -\\ ♣|\n|  |___| D|\n└─────────┘");
+                break;
+            case 3:
+                printf("\n┌─────────┐\n|D |~~~|  |\n|♠ /o,o\\  |\n|  \\_-_/  |\n| _-~+_-~ |\n|  /~-~\\  |\n|  \\o`o/ ♠|\n|  |___| D|\n└─────────┘");
+                break;
+            default:
+                printf("erreur");
+                break;
+            }
+            break;
+    case 13:
+        switch (couleur)
+            {
+            case 0:
+                printf("\n┌─────────┐\n|R |/|\\|  |\n|♦ |o.o|  |\n|   \\v/   |\n|  XXOXX  |\n|   /^\\   |\n|  |o'o| ♦|\n|  |\\|/| R|\n└─────────┘");
+                break;
+            case 1:
+                printf("\n┌─────────┐\n|R |/|\\|  |\n|♥ %%*,*%%  |\n|  \\_o_/  |\n|  /~o~\\  |\n|  %%*'*%%  |\n|  |o'o| ♥|\n|  |\\|/| R|\n└─────────┘");
+                break;
+            case 2:
+                printf("\n┌─────────┐\n|R |/|\\|  |\n|♣ \\- -/  |\n| o |-|   |\n|  I %% I  |\n|   |-| o |\n|  /- -\\ ♣|\n|  |\\|/| R|\n└─────────┘");
+                break;
+            case 3:
+                printf("\n┌─────────┐\n|R |/|\\|  |\n|♠ /o,o\\  |\n|  \\_-_/  |\n| _-~+_-~ |\n|  /~-~\\  |\n|  \\o`o/ ♠|\n|  |\\|/| R|\n└─────────┘");
+                break;
+            default:
+                printf("erreur");
+                break;
+            }
+            break;
     default:
-        printf("Couleur inconnue\n");
+        printf("Couleur inconnu\n");
         break;
     }
+    printf("\n");
 }
 
 void AfficherP(paquet p)
@@ -321,8 +568,18 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     //printf("Carte du croupier\n");
     //AfficherP(croupier->carte);
     //AfficherP(p);
+    /*pas de sens car on fait qu'une seule fois la somme (wtf)*/
     printf("Au tour du joueur\n");
-
+    if(joueur->somme == 21)
+    {
+        printf("Felicitation vous avez fait blackjack\n");
+        joueur -> blackjack = TRUE;
+    }
+    else if(croupier->somme == 21)
+    {
+        printf("Le croupier a fait blackjack\n");
+        joueur -> blackjack = TRUE;
+    }
     
     /*Verifie le cas du blackjack*/
     if(joueur->blackjack && !croupier->blackjack)
@@ -432,16 +689,8 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
     /*Gerer blackJack*/
     joueur -> blackjack = FALSE;
     croupier -> blackjack = FALSE;
-    if(joueur->somme == 21)
-    {
-        printf("Felicitation vous avez fait blackjack\n");
-        joueur -> blackjack = TRUE;
-    }
-    if(croupier->somme == 21)
-    {
-        printf("Le croupier a fait blackjack\n");
-        joueur -> blackjack = TRUE;
-    }
+    /*logique que ca marche pas verifier joueur->somme*/
+
     saisieArgent(joueur);
     tourDeJeu(croupier, joueur, p);
     int resultat = 1;    
@@ -462,6 +711,19 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
         croupier -> etat = TRUE;
         joueur -> mise = 0;
         croupier -> mise = -1; 
+        /*Gerer blackJack*/
+        joueur -> blackjack = FALSE;
+        croupier -> blackjack = FALSE;
+        if(joueur->somme == 21)
+        {
+            printf("Felicitation vous avez fait blackjack\n");
+            joueur -> blackjack = TRUE;
+        }
+        if(croupier->somme == 21)
+        {
+            printf("Le croupier a fait blackjack\n");
+            joueur -> blackjack = TRUE;
+        }
         saisieArgent(joueur);
         tourDeJeu(croupier, joueur, p);
         printf("Voulez vous rejouez ?\n");

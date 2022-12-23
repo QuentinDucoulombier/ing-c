@@ -8,7 +8,6 @@
  * 
  */
 #include "jeu.h"
-#include "affichage.h"
 
 /**
  * 

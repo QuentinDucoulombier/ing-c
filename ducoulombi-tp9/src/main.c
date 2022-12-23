@@ -8,6 +8,8 @@
  * 
  */
 #include "jeu.h"
+#include "affichage.h"
+#include "listes.h"
 
 /**
  * 

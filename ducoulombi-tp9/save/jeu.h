@@ -17,8 +17,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "affichage.h"
-#include "listes.h"
 
 typedef enum eCouleur
 {
@@ -61,6 +59,7 @@ typedef struct joueur
     int mise;
     int blackjack;
     paquet carte;
+    int assurance;
     int somme;
     int etat;
     int as;
@@ -108,6 +107,18 @@ void melangerPaquet(paquet *p);
  */
 void donneCarte(paquet *paquet, joueur* joueur);
 
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-12
+ * 
+ * @brief 
+ * 
+ * @param p 
+ */
+void Compter (paquet p);
 
 /**
  * 
@@ -176,5 +187,5 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p);
  */
 void debutDuJeu(joueur* croupier, joueur* joueur, paquet p);
 
-
+void AfficherP(paquet p);
 #endif

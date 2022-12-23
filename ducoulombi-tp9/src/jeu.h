@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "affichage.h"
 
 typedef enum eCouleur
 {
@@ -106,27 +107,6 @@ void melangerPaquet(paquet *p);
  */
 void donneCarte(paquet *paquet, joueur* joueur);
 
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-12
- * 
- * @brief 
- * 
- */
-void changementValeur(carte* paquet);
-
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-12
- * 
- * @brief 
- * 
- */
-void AfficherP(paquet p);
 
 /**
  * 

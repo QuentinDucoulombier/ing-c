@@ -10,10 +10,15 @@
 #ifndef __jeu_h_
 #define __jeu_h_
 
+#define TRUE 1
+#define FALSE 0
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "affichage.h"
+#include "listes.h"
 
 typedef enum eCouleur
 {
@@ -53,7 +58,12 @@ typedef carte* paquet;
 typedef struct joueur
 {
     int argent;
+    int mise;
+    int blackjack;
     paquet carte;
+    int somme;
+    int etat;
+    int as;
     char nom[30];
     char prenom[30];
 }joueur;
@@ -77,6 +87,7 @@ void initialiserPaquet(paquet *p);
  * @date 2022-12-12
  * 
  * @brief 
+ * @todo debugger la fonction
  * 
  * @param p 
  */
@@ -95,7 +106,8 @@ void melangerPaquet(paquet *p);
  * @param paquet 
  * @param joueur 
  */
-void donneCarte(carte *paquet, joueur* joueur);
+void donneCarte(paquet *paquet, joueur* joueur);
+
 
 /**
  * 
@@ -106,7 +118,7 @@ void donneCarte(carte *paquet, joueur* joueur);
  * @brief 
  * 
  */
-void changementValeur(carte* paquet);
+void creationJoueur(joueur* croupier, joueur* vraiJoueur);
 
 /**
  * 
@@ -116,11 +128,53 @@ void changementValeur(carte* paquet);
  * 
  * @brief 
  * 
+ * @return int 
  */
-void AfficherP(paquet p);
+int saisieEntier(void);
 
-void Compter (paquet p);
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-13
+ * 
+ * @brief 
+ * 
+ * @param joueur 
+ * @param etat 
+ * @return int 
+ */
+int verifJeu(joueur* joueur, int etat);
+
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-13
+ * 
+ * @brief 
+ * 
+ * @param croupier 
+ * @param joueur 
+ * @param p 
+ */
+void tourDeJeu(joueur* croupier, joueur* joueur, paquet p);
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-22
+ * 
+ * @brief 
+ * 
+ * @param croupier 
+ * @param joueur 
+ * @param p 
+ */
+void debutDuJeu(joueur* croupier, joueur* joueur, paquet p);
 
 
 #endif

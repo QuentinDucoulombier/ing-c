@@ -200,25 +200,9 @@ void doubler(joueur* joueur)
 
 }
 
-/*Debuger aaaaaaaaah*/
-void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
+
+void assurance(joueur* croupier, joueur* joueur)
 {
-    int out;
-    int etat = 0;
-    joueur -> as = FALSE;
-    croupier -> as = FALSE;
-    donneCarte(&p, joueur);
-    joueur->somme += joueur->carte->valeur;
-    /*test
-    carte test;
-    test.couleur = 0;
-    test.chiffre = 1;
-    test.valeur = 11;
-    AjouterDebut(&(croupier -> carte), test);*/
-    donneCarte(&p, croupier);
-    /*Premiere carte du croupier*/
-    printf("Premiere carte du croupier\n");
-    AfficherP(croupier->carte);
     if(croupier -> carte -> chiffre == AS)
     {
         croupier -> assurance = TRUE;
@@ -235,9 +219,40 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
             joueur->argent -= joueur->assurance;
         }
     }
-    croupier->somme += croupier->carte->valeur;
+}
+
+/*Debuger aaaaaaaaah*/
+void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
+{
+    /*Variable et initialisation*/
+    int out;
+    int etat = 0;
+    joueur -> as = FALSE;
+    croupier -> as = FALSE;
+
+    /*-------- On distribue les cartes --------*/
+    //Premiere carte du joueur
     donneCarte(&p, joueur);
     joueur->somme += joueur->carte->valeur;
+    /*test
+    carte test;
+    test.couleur = 0;
+    test.chiffre = 1;
+    test.valeur = 11;
+    AjouterDebut(&(croupier -> carte), test);*/
+    //Premiere carte du croupier
+    donneCarte(&p, croupier);
+    croupier->somme += croupier->carte->valeur;
+    printf("Premiere carte du croupier\n");
+    AfficherP(croupier->carte);
+    
+    /*Si c'est un as on propose l'assurance au joueur*/
+    assurance(croupier, joueur);
+
+    //Deuxieme carte du joueur
+    donneCarte(&p, joueur);
+    joueur->somme += joueur->carte->valeur;
+    //Deuxieme carte du croupier
     donneCarte(&p, croupier);
     /*carte test2;
     test2.couleur = 0;
@@ -245,9 +260,12 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     test2.valeur = 10;
     AjouterDebut(&(croupier -> carte), test2);*/
     croupier->somme += croupier->carte->valeur;
+    /*--------- On affiche les cartes du joueur ---------*/
     printf("Carte du joueur\n");
     AfficherP(joueur->carte);
+    //On affiche la somme
     printf("somme: %d\n", joueur->somme);
+    /*On propose au joueur si c'est possible de doubler sa mise*/
     if(joueur->argent > joueur->mise*2)
     {
         doubler(joueur);
@@ -256,13 +274,8 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     {
         printf("Vous n'avez pas assez d'argent pour doubler\n");
     }
-    
-    
-    /*Ne pas afficher les cartes du croupier*/
-    //printf("Carte du croupier\n");
-    //AfficherP(croupier->carte);
-    //AfficherP(p);
-    
+
+
     /*gere le cas du blackjack*/
     /*transformer en fonction*/
     if(joueur->somme == 21)

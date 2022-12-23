@@ -8,11 +8,13 @@
  *  - Ne pas melanger mettre juste a la fin de la liste
  *  x- Modifier le truc de blackjack ligne 570 (c'est bon)
  *  x- Rajouter le fait de split les fonctions: assurance, blackjack...
- *   - Le joueur ne peut pas faire de mise <=0
+ *  x- Le joueur ne peut pas faire de mise <=0
  *  x- Cree une fonction verifbinaire 
+ *   - Verifier que le fait d'avoir un as modifie bien la valeur
+ *   - Debug la fonction melanger
+ *   - Verifier sur ubuntu que ca met bien en bold
  * 
  * @brief 
- * @todo debug la fonction melanger
  * 
  */
 
@@ -144,7 +146,16 @@ void creationJoueur(joueur* croupier, joueur* vraiJoueur)
     printf("\nVeuillez saisir votre prenom: ");
     scanf("%s", vraiJoueur->prenom);
     printf("\nVeuillez saisir votre mise total: ");
-    vraiJoueur->argent = saisieEntier();
+    do
+    {
+        vraiJoueur->argent = saisieEntier();
+        if(vraiJoueur->argent <= 0)
+        {
+            printf("Veuillez saisir une valeure postive: ");
+        }
+    } while (vraiJoueur->argent <= 0);
+    
+    
 }
 
 int verifJeu(joueur* joueur, int etat)
@@ -160,12 +171,12 @@ int verifJeu(joueur* joueur, int etat)
             /*Joueur->as compte le nombre d'as dans le paquet de carte du joueur si >0 => VRAI sinon si 0 => FAUX*/
             if(joueur->as)
             {
-                printf("Vous avez un as donc la somme devient\n");//Faire le cas ou ca tombe sur 21 et le cas ou il y a 2 as
+                printf("Vous avez un as donc la somme devient");//Faire le cas ou ca tombe sur 21 et le cas ou il y a 2 as
                 joueur->somme -= 10;
-                printf("as -> %d\n", joueur->as);
+                //printf("as -> %d\n", joueur->as);
                 joueur->as --; //Normalement ca marche
-                printf("as -> %d\n", joueur->as);
-                printf("Somme la %d\n", joueur->somme);
+                //printf("as -> %d\n", joueur->as);
+                printf("%d\n", joueur->somme);
                 return TRUE;
             }
             else
@@ -180,7 +191,7 @@ int verifJeu(joueur* joueur, int etat)
             return TRUE;
         }
     }
-    printf("out fonction \n");
+    //printf("out fonction \n");
     return FALSE;
     
 }
@@ -241,14 +252,14 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
     if(joueur->blackjack && !croupier->blackjack)
     {
         joueur->argent += joueur->mise + joueur->mise/2;
-        printf("Le joueur gagne\n");
+        printf("\n\e[1mLe joueur gagne\e[m\n");
     }
     else if (croupier->blackjack && !joueur->blackjack)
     {
         if(!joueur->assurance)
         {
             joueur->argent -= joueur->mise;
-            printf("Le croupier gagne\n");
+            printf("\n\e[1mLe croupier gagne\e[m\n");
         }
         else
         {
@@ -308,7 +319,7 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
         if((croupier -> somme > joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == FALSE && croupier -> etat == TRUE))//croupier -> etat == TRUE
         {
             joueur->argent -= joueur->mise;
-            printf("Le croupier gagne\n");
+            printf("\n\e[1mLe croupier gagne\e[m\n");
         }
         /*joueur gagne*/
         else if ((croupier -> somme < joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == TRUE && croupier -> etat == FALSE))
@@ -316,7 +327,7 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
             if(!joueur->assurance)
             {
                 joueur->argent += joueur->mise;
-                printf("Le joueur gagne\n");
+                printf("\n\e[1mLe joueur gagne\e[m\n");
             }
             else
             {
@@ -403,8 +414,12 @@ void saisieArgent(joueur* joueur)
         {
             printf("Erreur vous avez misez plus que votre argent\n");
         }
+        if(joueur->mise <= 0)
+        {
+            printf("Vous etes obligez de misez qql de chose de positif\n");
+        }
 
-    } while (joueur->mise > joueur->argent);
+    } while (joueur->mise > joueur->argent || joueur->mise <= 0);
 }
 
 int menuBin(int type)

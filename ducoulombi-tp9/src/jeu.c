@@ -4,9 +4,12 @@
  * @version 0.1
  * @date 2022-12-09
  * TODO:
- *  - Verifier si le blackjack marche (oui)
+ *  x- Verifier si le blackjack marche (oui)
  *  - Ne pas melanger mettre juste a la fin de la liste
- *  - Modifier le truc de blackjack ligne 570 (c'est bon)
+ *  x- Modifier le truc de blackjack ligne 570 (c'est bon)
+ *  x- Rajouter le fait de split les fonctions: assurance, blackjack...
+ *   - Le joueur ne peut pas faire de mise <=0
+ *  x- Cree une fonction verifbinaire 
  * 
  * @brief 
  * @todo debug la fonction melanger
@@ -77,13 +80,10 @@ void melangerPaquet(paquet *p)
 void donneCarte(paquet *p, joueur* joueur)
 {
     AjouterDebut(&(joueur -> carte), supprimerDebut(p));
-    //printf("\nCarte %d\n", joueur->carte->chiffre);
-    //afficheCarte(joueur->carte->couleur, joueur->carte->chiffre, joueur->carte->valeur);
     /*Compte le nombre d'as dans le paquet du joueur*/
     if(joueur->carte->chiffre == AS)
     {
         joueur->as ++;
-        //printf("as -> %d\n", joueur->as);
     }
     
 }
@@ -188,10 +188,8 @@ int verifJeu(joueur* joueur, int etat)
 void doubler(joueur* joueur)
 {
     printf("Doubler votre mise ?\n");
-    printf("1- Oui\n");
-    printf("2- Non\n");
     
-    int bool_double = saisieEntier() - 1;
+    int bool_double = menuBin(1);
     if(!bool_double)
     {
         joueur->mise += joueur->mise;
@@ -207,77 +205,21 @@ void assurance(joueur* croupier, joueur* joueur)
     {
         croupier -> assurance = TRUE;
         printf("Le joueur peut choisir une assurance\n");
-        printf("          --------------Explication-------------\n");
+        printf("            --------------Explication-------------\n");
         printf("Pour cela, le joueur paye la moitié de sa mise initiale. Si le croupier fait Blackjack, le joueur perd sa mise mais se voit payer l assurance en double (donc bénéfice 0, perte 0). Si le croupier ne fait pas Blackjack, deux situations sont possibles : Premièrement, le joueur gagne ; il perd son assurance mais empoche l équivalent de sa mise initiale (bénéfice net 1/2 fois la mise initiale). Deuxièmement, le joueur perd ; il perd alors l assurance ainsi que sa mise (perte 1,5 fois la mise initiale).\n");
         printf("\nVoulez vous choisir une assurance ?\n");
-        printf("1- Oui\n");
-        printf("2- Non\n");
-        int reponse = saisieEntier() - 1;
+        int reponse = menuBin(1);
         if(!reponse)
         {
-            joueur->assurance = joueur->mise/2; //passe a true
+            joueur->assurance = joueur->mise/2; //passe a true car >0
             joueur->argent -= joueur->assurance;
         }
     }
 }
 
-/*Debuger aaaaaaaaah*/
-void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
+
+void blackJack(joueur* croupier, joueur* joueur)
 {
-    /*Variable et initialisation*/
-    int out;
-    int etat = 0;
-    joueur -> as = FALSE;
-    croupier -> as = FALSE;
-
-    /*-------- On distribue les cartes --------*/
-    //Premiere carte du joueur
-    donneCarte(&p, joueur);
-    joueur->somme += joueur->carte->valeur;
-    /*test
-    carte test;
-    test.couleur = 0;
-    test.chiffre = 1;
-    test.valeur = 11;
-    AjouterDebut(&(croupier -> carte), test);*/
-    //Premiere carte du croupier
-    donneCarte(&p, croupier);
-    croupier->somme += croupier->carte->valeur;
-    printf("Premiere carte du croupier\n");
-    AfficherP(croupier->carte);
-    
-    /*Si c'est un as on propose l'assurance au joueur*/
-    assurance(croupier, joueur);
-
-    //Deuxieme carte du joueur
-    donneCarte(&p, joueur);
-    joueur->somme += joueur->carte->valeur;
-    //Deuxieme carte du croupier
-    donneCarte(&p, croupier);
-    /*carte test2;
-    test2.couleur = 0;
-    test2.chiffre = 10;
-    test2.valeur = 10;
-    AjouterDebut(&(croupier -> carte), test2);*/
-    croupier->somme += croupier->carte->valeur;
-    /*--------- On affiche les cartes du joueur ---------*/
-    printf("Carte du joueur\n");
-    AfficherP(joueur->carte);
-    //On affiche la somme
-    printf("somme: %d\n", joueur->somme);
-    /*On propose au joueur si c'est possible de doubler sa mise*/
-    if(joueur->argent > joueur->mise*2)
-    {
-        doubler(joueur);
-    }
-    else
-    {
-        printf("Vous n'avez pas assez d'argent pour doubler\n");
-    }
-
-
-    /*gere le cas du blackjack*/
-    /*transformer en fonction*/
     if(joueur->somme == 21)
     {
         printf("Felicitation vous avez fait blackjack\n");
@@ -289,8 +231,13 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
         AfficherP(croupier->carte);
         croupier -> blackjack = TRUE;
     }
-    /*Alors effectivement comme ca, ca n'a pas de sens ^^*/
-    /*Verifie le cas du blackjack*/
+}
+
+
+void aGagne(joueur* croupier, joueur* joueur, paquet p)
+{
+    int etat = 0;
+    int out;
     if(joueur->blackjack && !croupier->blackjack)
     {
         joueur->argent += joueur->mise + joueur->mise/2;
@@ -321,9 +268,7 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
         printf("somme: %d\n", joueur->somme);
         do
         {
-            printf("0.Distribuer\n");
-            printf("1.Rester\n");
-            scanf("%d", &out); //rajouter le entrée entier et limité que a 0 et 1
+            out = menuBin(2);
             if(!out) //out == 1
             {
                 donneCarte(&p, joueur);
@@ -386,11 +331,64 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
             printf("Egalité\n");
         }
     }
-    
-    //AfficherP(p);
 }
 
 
+void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
+{
+    /*Variable et initialisation*/
+    joueur -> as = FALSE;
+    croupier -> as = FALSE;
+
+    /*-------- On distribue les cartes --------*/
+    //Premiere carte du joueur
+    donneCarte(&p, joueur);
+    joueur->somme += joueur->carte->valeur;
+    /*test
+    carte test;
+    test.couleur = 0;
+    test.chiffre = 1;
+    test.valeur = 11;
+    AjouterDebut(&(croupier -> carte), test);*/
+    //Premiere carte du croupier
+    donneCarte(&p, croupier);
+    croupier->somme += croupier->carte->valeur;
+    printf("Premiere carte du croupier\n");
+    AfficherP(croupier->carte);
+    
+    /*Si c'est un as on propose l'assurance au joueur*/
+    assurance(croupier, joueur);
+
+    //Deuxieme carte du joueur
+    donneCarte(&p, joueur);
+    joueur->somme += joueur->carte->valeur;
+    //Deuxieme carte du croupier
+    donneCarte(&p, croupier);
+    /*carte test2;
+    test2.couleur = 0;
+    test2.chiffre = 10;
+    test2.valeur = 10;
+    AjouterDebut(&(croupier -> carte), test2);*/
+    croupier->somme += croupier->carte->valeur;
+    /*--------- On affiche les cartes du joueur ---------*/
+    printf("Carte du joueur\n");
+    AfficherP(joueur->carte);
+    //On affiche la somme
+    printf("somme: %d\n", joueur->somme);
+    /*On propose au joueur si c'est possible de doubler sa mise*/
+    if(joueur->argent > joueur->mise*2)
+    {
+        doubler(joueur);
+    }
+    else
+    {
+        printf("Vous n'avez pas assez d'argent pour doubler\n");
+    }
+    /*On verifie s'il y a blackjack*/
+    blackJack(croupier, joueur);
+    /*Et on regarde qui gagne la partie*/
+    aGagne(croupier,joueur, p);
+}
 
 
 void saisieArgent(joueur* joueur)
@@ -409,9 +407,41 @@ void saisieArgent(joueur* joueur)
     } while (joueur->mise > joueur->argent);
 }
 
+int menuBin(int type)
+{
+    int resultat = 1;
+    do
+    {
+        if(resultat>2 || resultat<1)
+        {
+            printf("Veuillez saisir un nombre entre 1 et 2\n");
+        }
+        if(type == 1)
+        {
+            printf("1- Oui\n");
+            printf("2- Non\n");
+        }
+        else if (type == 2)
+        {
+            printf("1- Distribuer\n");
+            printf("2- Rester\n");
+        }
+        
+        
+        resultat = saisieEntier();
+    } while (resultat>2 || resultat<1);
+    
+    resultat -= 1;
+    return(resultat);
+
+}
+
 void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
 {
+    /*On cree le joueur avec son nom, prenom, argent ...*/
     creationJoueur(croupier, joueur);
+
+    /*On initialise toutes les variables*/
     croupier -> carte = NULL;
     joueur -> carte = NULL;
     joueur -> somme = 0;
@@ -425,15 +455,18 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
     croupier -> blackjack = FALSE;
     croupier -> assurance = FALSE;
     joueur -> assurance = FALSE;
-    /*logique que ca marche pas verifier joueur->somme*/
-
+    
+    /*Gere la mise*/
     saisieArgent(joueur);
+
+    /*Lance la partie*/
     tourDeJeu(croupier, joueur, p);
+
+    /*Propose au joueur de rejouer*/
     int resultat = 1;    
     printf("Voulez vous rejouez ?\n");
-    printf("1- Oui\n");
-    printf("2- Non\n");
-    resultat = saisieEntier() - 1;
+    resultat = menuBin(1);
+    /*Recommence la partie*/
     while (!resultat)
     {
         /*refaire le menu*/
@@ -453,9 +486,8 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
         saisieArgent(joueur);
         tourDeJeu(croupier, joueur, p);
         printf("Voulez vous rejouez ?\n");
-        printf("1- Oui\n");
-        printf("2- Non\n");
-        resultat = saisieEntier() - 1;
+        resultat = menuBin(1);
     }
+    /*Fin de la partie*/
     printf("Merci d'avoir joué :), vous repartez avec %d €\n", joueur->argent);
 }

@@ -178,7 +178,27 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p);
  */
 void debutDuJeu(joueur* croupier, joueur* joueur, paquet p);
 
-
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-23
+ * 
+ * @brief 
+ * 
+ * @param p 
+ */
 void AfficherP(paquet p);
+
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-23
+ * 
+ * @brief 
+ * 
+ */
+int menuBin();
 
 #endif

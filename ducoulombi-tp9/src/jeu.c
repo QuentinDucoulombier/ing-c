@@ -13,6 +13,8 @@
  *   - Verifier que le fait d'avoir un as modifie bien la valeur
  *   - Debug la fonction melanger
  *   - Verifier sur ubuntu que ca met bien en bold
+ *  x- Ajouer les scores
+ *   - Bug supprimer debut (tres bizarre)
  * 
  * @brief 
  * 
@@ -81,7 +83,9 @@ void melangerPaquet(paquet *p)
 
 void donneCarte(paquet *p, joueur* joueur)
 {
+    //carte temp = supprimerDebut(p);
     AjouterDebut(&(joueur -> carte), supprimerDebut(p));
+    //ajouterFin(p, temp);
     /*Compte le nombre d'as dans le paquet du joueur*/
     if(joueur->carte->chiffre == AS)
     {
@@ -253,6 +257,7 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
     {
         joueur->argent += joueur->mise + joueur->mise/2;
         printf("\n\e[1mLe joueur gagne\e[m\n");
+        joueur->score++;
     }
     else if (croupier->blackjack && !joueur->blackjack)
     {
@@ -260,12 +265,14 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
         {
             joueur->argent -= joueur->mise;
             printf("\n\e[1mLe croupier gagne\e[m\n");
+            
         }
         else
         {
             joueur->argent += joueur->assurance;
             printf("Grace a votre assurance vous ne perdez rien\n");
         }
+        croupier->score++;
     }
     else if (croupier->blackjack && joueur->blackjack)
     {
@@ -320,6 +327,7 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
         {
             joueur->argent -= joueur->mise;
             printf("\n\e[1mLe croupier gagne\e[m\n");
+            croupier->score++;
         }
         /*joueur gagne*/
         else if ((croupier -> somme < joueur -> somme && joueur -> etat == TRUE && croupier -> etat == TRUE) || (joueur -> etat == TRUE && croupier -> etat == FALSE))
@@ -328,11 +336,13 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
             {
                 joueur->argent += joueur->mise;
                 printf("\n\e[1mLe joueur gagne\e[m\n");
+                joueur->score++;
             }
             else
             {
                 printf("Le joueur gagne mais perd son assurance\n");
                 joueur->argent += joueur->mise;
+                joueur->score++;
             }
             
             
@@ -470,6 +480,8 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
     croupier -> blackjack = FALSE;
     croupier -> assurance = FALSE;
     joueur -> assurance = FALSE;
+    joueur -> score = 0;
+    croupier -> score = 0;
     
     /*Gere la mise*/
     saisieArgent(joueur);
@@ -479,6 +491,7 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
 
     /*Propose au joueur de rejouer*/
     int resultat = 1;    
+    //AfficherP(p);
     printf("Voulez vous rejouez ?\n");
     resultat = menuBin(1);
     /*Recommence la partie*/
@@ -498,11 +511,14 @@ void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
         /*Gerer blackJack*/
         joueur -> blackjack = FALSE;
         croupier -> blackjack = FALSE;
+        printf("Nouvelle partie !\n");
+        printf("Score:\n- Joueur = %d\n- Croupier = %d\n\n", joueur->score, croupier->score);
         saisieArgent(joueur);
         tourDeJeu(croupier, joueur, p);
         printf("Voulez vous rejouez ?\n");
         resultat = menuBin(1);
     }
     /*Fin de la partie*/
-    printf("Merci d'avoir joué :), vous repartez avec %d €\n", joueur->argent);
+    printf("Score:\n- Joueur = %d\n- Croupier = %d\n\n", joueur->score, croupier->score);
+    printf("Merci d'avoir joué %s %s :), vous repartez avec %d €\n", joueur->prenom, joueur->nom, joueur->argent);
 }

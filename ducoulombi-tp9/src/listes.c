@@ -120,3 +120,30 @@ void Compter(paquet p)
     }
     printf("res -> %d\n", res);
 }
+
+
+void ajouterFin(paquet* l, carte element)
+{
+
+    carte* m;
+    paquet temp;
+
+    m = malloc(sizeof(carte));
+    m -> chiffre = element.chiffre;
+    m -> couleur = element.couleur;
+    m -> valeur = element.valeur;
+    temp = (*l);
+
+    if (temp != NULL)
+    {
+        while (temp -> suivant != NULL)
+        {
+            temp = temp -> suivant;
+        }
+        temp -> suivant = m;
+    }
+    else
+    {
+        temp = m;
+    }
+}

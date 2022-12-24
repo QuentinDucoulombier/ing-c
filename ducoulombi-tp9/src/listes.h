@@ -68,4 +68,15 @@ carte supprimerDebut(paquet* l);
  */
 void Compter(paquet p);
 
+/**
+ * 
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2022-12-24
+ * 
+ * @brief 
+ * 
+ */
+void ajouterFin(paquet* l, carte element);
+
 #endif

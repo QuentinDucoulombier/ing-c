@@ -65,6 +65,7 @@ typedef struct joueur
     int somme;
     int etat;
     int as;
+    int score;
     char nom[30];
     char prenom[30];
 }joueur;

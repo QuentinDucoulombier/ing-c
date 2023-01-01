@@ -23,6 +23,165 @@
 #include "jeu.h"
 #include "listes.h"
 
+/*---------------------------------------------------*/
+/*                Ensemble de fonctions local        */
+/*---------------------------------------------------*/
+
+/**
+ * @fn int menuBin(int type)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief fonction local qui permet de laisser l'utilisateur saisir son choix a l'aide d'un petit menu binaire
+ * 
+ * @param type 
+ * @return le choix de l'utilisateur
+ */
+int menuBin(int type)
+{
+    int resultat = 1;
+    do
+    {
+        if(resultat>2 || resultat<1)
+        {
+            printf("Veuillez saisir un nombre entre 1 et 2\n");
+        }
+        if(type == 1)
+        {
+            printf("1- Oui\n");
+            printf("2- Non\n");
+        }
+        else if (type == 2)
+        {
+            printf("1- Distribuer\n");
+            printf("2- Rester\n");
+        }
+        
+        
+        resultat = saisieEntier();
+    } while (resultat>2 || resultat<1);
+    
+    resultat -= 1;
+    return(resultat);
+
+}
+
+
+/**
+ * @fn void doubler(joueur* joueur)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief procedure local qui permet de doubler la mise
+ * 
+ * @param joueur 
+ */
+void doubler(joueur* joueur)
+{
+    printf("Doubler votre mise ?\n");
+    
+    int bool_double = menuBin(1);
+    if(!bool_double)
+    {
+        joueur->mise += joueur->mise;
+        printf("Vous doublez votre mise !\nMise actuelle %d\n\n", joueur->mise);
+    }
+
+}
+
+/**
+ * @fn void assurance(joueur* croupier, joueur* joueur)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief procedure locale qui permet au joueur de gerer l'assurance
+ * 
+ * @param croupier 
+ * @param joueur 
+ */
+void assurance(joueur* croupier, joueur* joueur)
+{
+    if(croupier -> carte -> chiffre == AS)
+    {
+        croupier -> assurance = TRUE;
+        printf("Le joueur peut choisir une assurance\n");
+        printf("            --------------Explication-------------\n");
+        printf("Pour cela, le joueur paye la moitié de sa mise initiale. Si le croupier fait Blackjack, le joueur perd sa mise mais se voit payer l assurance en double (donc bénéfice 0, perte 0). Si le croupier ne fait pas Blackjack, deux situations sont possibles : Premièrement, le joueur gagne ; il perd son assurance mais empoche l équivalent de sa mise initiale (bénéfice net 1/2 fois la mise initiale). Deuxièmement, le joueur perd ; il perd alors l assurance ainsi que sa mise (perte 1,5 fois la mise initiale).\n");
+        printf("\nVoulez vous choisir une assurance ?\n");
+        int reponse = menuBin(1);
+        if(!reponse)
+        {
+            joueur->assurance = joueur->mise/2; //passe a true car >0
+            joueur->argent -= joueur->assurance;
+        }
+    }
+}
+
+/**
+ * @fn void blackJack(joueur* croupier, joueur* joueur)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief procedure local qui permet de detecter un blackjack
+ * 
+ * @param croupier 
+ * @param joueur 
+ */
+void blackJack(joueur* croupier, joueur* joueur)
+{
+    if(joueur->somme == 21)
+    {
+        printf("Felicitation vous avez fait blackjack\n");
+        joueur -> blackjack = TRUE;
+    }
+    else if(croupier->somme == 21)
+    {
+        printf("Le croupier a fait blackjack\n");
+        AfficherP(croupier->carte);
+        croupier -> blackjack = TRUE;
+    }
+}
+
+/**
+ * @fn void saisieArgent(joueur* joueur)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief precudure local qui permet de laisser l'utilisateur saisir une somme
+ * 
+ * @param joueur 
+ */
+void saisieArgent(joueur* joueur)
+{
+    do
+    {
+        printf("Vous avez %d argents\n", joueur->argent);
+        printf("Quelle est votre mise pour cette partie: ");
+        joueur->mise = saisieEntier();
+        printf("\n");
+        if(joueur->mise > joueur->argent)
+        {
+            printf("Erreur vous avez misez plus que votre argent\n");
+        }
+        if(joueur->mise <= 0)
+        {
+            printf("Vous etes obligez de misez qql de chose de positif\n");
+        }
+
+    } while (joueur->mise > joueur->argent || joueur->mise <= 0);
+}
+
+
+
+/*---------------------------------------------------*/
+/*        Ensemble de fonctions non local            */
+/*---------------------------------------------------*/
+
 
 void initialiserPaquet(paquet *p)
 {
@@ -30,15 +189,11 @@ void initialiserPaquet(paquet *p)
     chiffreCarte chiffres[] = {AS, DEUX, TROIS, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, VALET, DAME, ROI};
     eCouleur couleurs[] = {carreau, coeur, trefle, pique};
 
-    // On parcourt le tableau des cartes et on crée un objet carte pour chaque combinaison possible
-    // de chiffre et de couleur
-    int test = 1;
-    /*for (int i = 0; i < 3; i++)*///Pour test les as
+    // On parcourt le tableau des cartes et on crée un objet carte pour chaque combinaison possible de chiffre et de couleur
     for (int i = 0; i < 13; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            test++;
             carte* c = malloc(sizeof(carte));
             if(c != NULL)
             {
@@ -62,7 +217,6 @@ void initialiserPaquet(paquet *p)
             }
         }
     }
-    printf("test -> %d\n", test);
 }
 
 
@@ -84,7 +238,7 @@ void melangerPaquet(paquet *p)
 void donneCarte(paquet *p, joueur* joueur)
 {
     //carte temp = supprimerDebut(p);
-    AjouterDebut(&(joueur -> carte), supprimerDebut(p));
+    ajouterDebut(&(joueur -> carte), supprimerDebut(p));
     //ajouterFin(p, temp);
     /*Compte le nombre d'as dans le paquet du joueur*/
     if(joueur->carte->chiffre == AS)
@@ -200,53 +354,7 @@ int verifJeu(joueur* joueur, int etat)
     
 }
 
-void doubler(joueur* joueur)
-{
-    printf("Doubler votre mise ?\n");
-    
-    int bool_double = menuBin(1);
-    if(!bool_double)
-    {
-        joueur->mise += joueur->mise;
-        printf("Vous doublez votre mise !\nMise actuelle %d\n\n", joueur->mise);
-    }
 
-}
-
-
-void assurance(joueur* croupier, joueur* joueur)
-{
-    if(croupier -> carte -> chiffre == AS)
-    {
-        croupier -> assurance = TRUE;
-        printf("Le joueur peut choisir une assurance\n");
-        printf("            --------------Explication-------------\n");
-        printf("Pour cela, le joueur paye la moitié de sa mise initiale. Si le croupier fait Blackjack, le joueur perd sa mise mais se voit payer l assurance en double (donc bénéfice 0, perte 0). Si le croupier ne fait pas Blackjack, deux situations sont possibles : Premièrement, le joueur gagne ; il perd son assurance mais empoche l équivalent de sa mise initiale (bénéfice net 1/2 fois la mise initiale). Deuxièmement, le joueur perd ; il perd alors l assurance ainsi que sa mise (perte 1,5 fois la mise initiale).\n");
-        printf("\nVoulez vous choisir une assurance ?\n");
-        int reponse = menuBin(1);
-        if(!reponse)
-        {
-            joueur->assurance = joueur->mise/2; //passe a true car >0
-            joueur->argent -= joueur->assurance;
-        }
-    }
-}
-
-
-void blackJack(joueur* croupier, joueur* joueur)
-{
-    if(joueur->somme == 21)
-    {
-        printf("Felicitation vous avez fait blackjack\n");
-        joueur -> blackjack = TRUE;
-    }
-    else if(croupier->somme == 21)
-    {
-        printf("Le croupier a fait blackjack\n");
-        AfficherP(croupier->carte);
-        croupier -> blackjack = TRUE;
-    }
-}
 
 
 void aGagne(joueur* croupier, joueur* joueur, paquet p)
@@ -365,12 +473,7 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     //Premiere carte du joueur
     donneCarte(&p, joueur);
     joueur->somme += joueur->carte->valeur;
-    /*test
-    carte test;
-    test.couleur = 0;
-    test.chiffre = 1;
-    test.valeur = 11;
-    AjouterDebut(&(croupier -> carte), test);*/
+
     //Premiere carte du croupier
     donneCarte(&p, croupier);
     croupier->somme += croupier->carte->valeur;
@@ -383,13 +486,8 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
     //Deuxieme carte du joueur
     donneCarte(&p, joueur);
     joueur->somme += joueur->carte->valeur;
+
     //Deuxieme carte du croupier
-    donneCarte(&p, croupier);
-    /*carte test2;
-    test2.couleur = 0;
-    test2.chiffre = 10;
-    test2.valeur = 10;
-    AjouterDebut(&(croupier -> carte), test2);*/
     croupier->somme += croupier->carte->valeur;
     /*--------- On affiche les cartes du joueur ---------*/
     printf("Carte du joueur\n");
@@ -412,54 +510,8 @@ void tourDeJeu(joueur* croupier, joueur* joueur, paquet p)
 }
 
 
-void saisieArgent(joueur* joueur)
-{
-    do
-    {
-        printf("Vous avez %d argents\n", joueur->argent);
-        printf("Quelle est votre mise pour cette partie: ");
-        joueur->mise = saisieEntier();
-        printf("\n");
-        if(joueur->mise > joueur->argent)
-        {
-            printf("Erreur vous avez misez plus que votre argent\n");
-        }
-        if(joueur->mise <= 0)
-        {
-            printf("Vous etes obligez de misez qql de chose de positif\n");
-        }
 
-    } while (joueur->mise > joueur->argent || joueur->mise <= 0);
-}
 
-int menuBin(int type)
-{
-    int resultat = 1;
-    do
-    {
-        if(resultat>2 || resultat<1)
-        {
-            printf("Veuillez saisir un nombre entre 1 et 2\n");
-        }
-        if(type == 1)
-        {
-            printf("1- Oui\n");
-            printf("2- Non\n");
-        }
-        else if (type == 2)
-        {
-            printf("1- Distribuer\n");
-            printf("2- Rester\n");
-        }
-        
-        
-        resultat = saisieEntier();
-    } while (resultat>2 || resultat<1);
-    
-    resultat -= 1;
-    return(resultat);
-
-}
 
 void debutDuJeu(joueur* croupier, joueur* joueur, paquet p)
 {

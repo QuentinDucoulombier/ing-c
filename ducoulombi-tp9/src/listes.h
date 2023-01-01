@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief Fichier d'appel de l'ensemble de fonctions qui permet l'utilisation des listes
  * 
  */
 
@@ -20,7 +20,7 @@
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief procedure qui permet d'ajouter une carte a une certaine position dans une liste (paquet)
  * 
  * @param l 
  * @param valeur 
@@ -36,12 +36,12 @@ void ajouterPos(paquet* l, int valeur, chiffreCarte chiffreC, eCouleur coul, int
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief procedure qui permet d'ajouter une carte au debut d'une liste (paquet)
  * 
  * @param l 
  * @param element 
  */
-void AjouterDebut(paquet* l, carte element);
+void ajouterDebut(paquet* l, carte element);
 
 /**
  * 
@@ -49,10 +49,10 @@ void AjouterDebut(paquet* l, carte element);
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief fonction qui permet de supprimer une carte a la fin d'une liste (paquet)
  * 
  * @param l 
- * @return carte 
+ * @return la carte supprimer
  */
 carte supprimerDebut(paquet* l);
 
@@ -62,11 +62,11 @@ carte supprimerDebut(paquet* l);
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief procedure qui compte le nombre de carte dans le paquet
  * 
  * @param p 
  */
-void Compter(paquet p);
+void compter(paquet p);
 
 /**
  * 
@@ -74,7 +74,7 @@ void Compter(paquet p);
  * @version 0.1
  * @date 2022-12-24
  * 
- * @brief 
+ * @brief procedure qui permet d'ajouter une carte a la fin d'une liste (paquet)
  * 
  */
 void ajouterFin(paquet* l, carte element);

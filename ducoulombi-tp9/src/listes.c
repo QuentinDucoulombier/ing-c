@@ -4,26 +4,13 @@
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief Fichier de l'ensemble de fonctions qui permet l'utilisation des listes
  * 
  */
 
 #include "listes.h"
 
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-23
- * 
- * @brief 
- * 
- * @param l 
- * @param valeur 
- * @param chiffreC 
- * @param coul 
- * @param pos 
- */
+
 void ajouterPos(paquet* l, int valeur, chiffreCarte chiffreC, eCouleur coul, int pos)
 {
     carte* m = malloc(sizeof(carte));
@@ -47,18 +34,8 @@ void ajouterPos(paquet* l, int valeur, chiffreCarte chiffreC, eCouleur coul, int
     temp -> suivant = m;
 }
 
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-23
- * 
- * @brief 
- * 
- * @param l 
- * @param element 
- */
-void AjouterDebut(paquet* l, carte element)
+
+void ajouterDebut(paquet* l, carte element)
 {
     carte* m;
 
@@ -71,17 +48,7 @@ void AjouterDebut(paquet* l, carte element)
 
 }
 
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-23
- * 
- * @brief 
- * 
- * @param l 
- * @return carte 
- */
+
 carte supprimerDebut(paquet* l)
 {
     paquet temp = (*l);
@@ -93,17 +60,8 @@ carte supprimerDebut(paquet* l)
     return eltsuppr;
 }
 
-/**
- * 
- * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
- * @version 0.1
- * @date 2022-12-23
- * 
- * @brief 
- * 
- * @param p 
- */
-void Compter(paquet p)
+
+void compter(paquet p)
 {
     int res = 0;
 

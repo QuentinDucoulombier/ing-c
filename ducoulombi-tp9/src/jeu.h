@@ -63,7 +63,7 @@ typedef enum chiffreCarte
 }chiffreCarte;
 
 /**
- * @struct typedef struct carte
+ * @struct struct carte
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2023-01-01
@@ -91,7 +91,7 @@ typedef struct carte
 typedef carte* paquet;
 
 /**
- * @struct typedef struct joueur
+ * @struct struct joueur
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2023-01-01

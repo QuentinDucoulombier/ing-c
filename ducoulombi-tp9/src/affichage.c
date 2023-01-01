@@ -4,7 +4,7 @@
  * @version 0.1
  * @date 2022-12-23
  * 
- * @brief 
+ * @brief Fichier de l'ensemble des fonctions pour l'affichage
  * 
  */
 #include "affichage.h"

@@ -3,20 +3,8 @@
  * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
  * @version 0.1
  * @date 2022-12-09
- * TODO:
- *  x- Verifier si le blackjack marche (oui)
- *  - Ne pas melanger mettre juste a la fin de la liste
- *  x- Modifier le truc de blackjack ligne 570 (c'est bon)
- *  x- Rajouter le fait de split les fonctions: assurance, blackjack...
- *  x- Le joueur ne peut pas faire de mise <=0
- *  x- Cree une fonction verifbinaire 
- *   - Verifier que le fait d'avoir un as modifie bien la valeur
- *   - Debug la fonction melanger
- *   - Verifier sur ubuntu que ca met bien en bold
- *  x- Ajouer les scores
- *   - Bug supprimer debut (tres bizarre)
  * 
- * @brief 
+ * @brief fichier qui contient l'ensemble des fonctions et procedure pour le jeu
  * 
  */
 
@@ -224,9 +212,11 @@ void melangerPaquet(paquet *p)
 {
     srand(time(NULL));  
 
+    /*On parcours le paquet de carte*/
     for (int i = 0; i < 52; i++)
     {
-        int pos = rand() % 52; 
+        /*On initialise la position de facon random*/
+        int pos = rand() % 52;
         supprimerDebut(p);
         int valeur = (*p) ->valeur;
         chiffreCarte chiffre = (*p)->chiffre;
@@ -237,9 +227,7 @@ void melangerPaquet(paquet *p)
 
 void donneCarte(paquet *p, joueur* joueur)
 {
-    //carte temp = supprimerDebut(p);
     ajouterDebut(&(joueur -> carte), supprimerDebut(p));
-    //ajouterFin(p, temp);
     /*Compte le nombre d'as dans le paquet du joueur*/
     if(joueur->carte->chiffre == AS)
     {
@@ -395,7 +383,7 @@ void aGagne(joueur* croupier, joueur* joueur, paquet p)
         do
         {
             out = menuBin(2);
-            if(!out) //out == 1
+            if(!out) 
             {
                 donneCarte(&p, joueur);
                 printf("Carte du joueur\n");

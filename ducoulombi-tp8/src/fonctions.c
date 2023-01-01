@@ -37,15 +37,17 @@ void liberer(char* str)
     str = NULL;
 }
 
-char* get_input() 
+char* verifGetLine() 
 {
-  char* line = NULL;
-  size_t size;
-  if (getline(&line, &size, stdin) == -1) {
-    // Erreur de lecture ou fin de fichier
+  char* ligne = NULL;
+  size_t taille;
+  /*verifie si erreur*/
+  if (getline(&ligne, &taille, stdin) == -1) 
+  {
     return NULL;
   }
-  return line;
+  /*retourn la ligne (saisie utilisateur)*/
+  return ligne;
 }
 
 long saisieEntier(void)

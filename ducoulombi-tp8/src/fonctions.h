@@ -49,11 +49,11 @@ void liberer(char* str);
  * @version 0.1
  * @date 2023-01-01
  * 
- * @brief Get the input object
+ * @brief Recupere la saisie utilisateur avec getline
  * 
  * @return char* 
  */
-char* get_input();
+char* verifGetLine();
 
 
 

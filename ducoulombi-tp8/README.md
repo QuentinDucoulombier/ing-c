@@ -13,7 +13,17 @@ Email: ducoulombi@cy-tech.fr
 ### Pour compiler il suffit de se mettre dans le répertoire courant du dossier ducoulombi-tp7.b
 
 > make  
-> ./exe (avec la liste des arguments -> voir ./exe -h help)
+> ./exe (avec la liste des arguments -> voir ./exe)
+```bash
+--------Exemple de formule---------
+Pour le code cesar: ./exe -c cesar -d 5 -m "Bonjour les tekiens"
+Pour le code de vigenere: ./exe -c vigenere -k "cle" -m "message"
+Pour le codage de scytale: ./exe -c scytale -m "message a encrypte"
+OU
+Pour le code cesar: ./exe -c cesar
+Pour le code de vigenere: ./exe -c vigenere
+Pour le codage de scytale: ./exe -c scytale
+```
 
 ### Pour nettoyer les fichiers:
 

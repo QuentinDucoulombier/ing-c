@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
             else
             {
                 printf("Veuillez saisir une chaine a crypter: ");
-                char* input = get_input();
+                char* input = verifGetLine();
                 printf("Veuillez saisir le decalage: ");
                 /*Calcul du decalage*/
                 long decalage = saisieEntier();
@@ -92,9 +92,9 @@ int main(int argc, char *argv[])
             else
             {
                 printf("Veuillez saisir une chaine a crypter: ");
-                char* input = get_input();
+                char* input = verifGetLine();
                 printf("Veuillez saisir la clé: ");
-                char* cle = get_input();
+                char* cle = verifGetLine();
                 if ((input != NULL) && (cle != NULL)) 
                 {
                     printf("Chaine intial: %s", input);
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
             else
             {
                 printf("Veuillez saisir une chaine a crypter: ");
-                char* input = get_input();
+                char* input = verifGetLine();
                 if (input != NULL) 
                 {
                     printf("Chaine intial: %s", input);

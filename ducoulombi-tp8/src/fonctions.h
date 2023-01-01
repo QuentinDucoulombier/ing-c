@@ -16,6 +16,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include "codage.h"
 
 /**
  * @fn long verifConversion(char* chaine)
@@ -41,5 +42,31 @@ long verifConversion(char* chaine);
  * @param str 
  */
 void liberer(char* str);
+
+/**
+ * @fn char* get_input()
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief Get the input object
+ * 
+ * @return char* 
+ */
+char* get_input();
+
+
+
+/**
+ * @fn long saisieEntier(void)
+ * @author Quentin Ducoulombier (ducoulombi@cy-tech.fr)
+ * @version 0.1
+ * @date 2023-01-01
+ * 
+ * @brief permet de saisir un long
+ * 
+ * @return long 
+ */
+long saisieEntier(void);
 
 #endif

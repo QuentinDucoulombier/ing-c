@@ -36,3 +36,29 @@ void liberer(char* str)
     free(str);
     str = NULL;
 }
+
+char* get_input() 
+{
+  char* line = NULL;
+  size_t size;
+  if (getline(&line, &size, stdin) == -1) {
+    // Erreur de lecture ou fin de fichier
+    return NULL;
+  }
+  return line;
+}
+
+long saisieEntier(void)
+{
+    long long_n = 0;
+    int int_outScan = scanf("%ld", &long_n);
+    if(int_outScan)
+    {
+        return(long_n);
+    }
+    else
+    {
+        fprintf(stderr, "Entree incorrecte\n");
+        exit(EXIT_FAILURE);
+    }
+}

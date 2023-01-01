@@ -13,7 +13,7 @@
 
 void afficheCarte(int couleur, int chiffre, int valeur)
 {
-    /*Ascii art pour valets, rennes et rois https://ascii.co.uk/art/cards*/
+    /*Ascii art pour valets, reines et rois https://ascii.co.uk/art/cards*/
     switch (chiffre)
     {
     case 1:

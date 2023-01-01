@@ -1,4 +1,4 @@
-# 
+# TP9: BlackJack
  
 ---
 
@@ -7,6 +7,11 @@ Date: 09/12/22
 Email: ducoulombi@cy-tech.fr
 
 ---
+
+## Presentation
+
+Ce programme permet de jouer au blackJack contre le croupier. Ce programme peut gerer les paris, les scores et affiche des cartes en ASCII art.  
+Il est egalement possible d'avoir l'assurance et de doubler.  
 
 ## Comment compiler ?
 
